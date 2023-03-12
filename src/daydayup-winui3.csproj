@@ -34,6 +34,7 @@
     <PackageReference Include="Nito.AsyncEx" Version="5.1.2" />
     <PackageReference Include="System.Composition.AttributedModel" Version="7.0.0" />
     <PackageReference Include="WinUICommunity.Common" Version="3.2.4" />
+    <PackageReference Include="WinUICommunity.SettingsUI" Version="3.1.1" />
     <Manifest Include="$(ApplicationManifest)" />
   </ItemGroup>
 
