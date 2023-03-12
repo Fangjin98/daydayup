@@ -1,0 +1,78 @@
+﻿<Page x:Class="DayDayUp.Views.DurationPredictionPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:converter="using:DayDayUp.Helpers.Converters"
+      xmlns:local="using:DayDayUp.Views"
+      mc:Ignorable="d"
+      Height="400">
+    
+    <Page.Resources>
+        <converter:EnumToVisibilityConverter x:Key="TaskStatusConverter" />
+        <converter:EnumToVisibilityNegativeConverter x:Key="NegativeTaskStatusConverter" />
+        <converter:CountToVisibilityConverter x:Key="CountConverter" />
+        <converter:CountToVisibilityNegativeConverter x:Key="NegativeCountConverter" />
+        <converter:DurationToStringConverter x:Key="DurationToStringConverter" />
+        <converter:StatusToStringConverter x:Key="StatusToStringConverter" />
+        <converter:DateToStringConverter x:Key="DateToStringConverter" />
+        <converter:DoubleToRatioConverter x:Key="DoubleToRatioConverter" />
+    </Page.Resources>
+    <Grid RowSpacing="12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <TextBlock Style="{StaticResource SubsubtitleTextStyle}">
+            <Run Text="Estimated: "/>
+            <Run Text="{x:Bind baseDuration, Converter={StaticResource DurationToStringConverter}}"
+                 FontWeight="Bold"/>
+        </TextBlock>
+        <TextBlock Grid.Row="1"
+                   Text="Prediction Durations + Probabilities"
+                   FontWeight="Bold"/>
+        <ListView Grid.Row="2"
+                  Name="PredictiedDurationList"
+                  Loaded="PredictionList_Loaded"
+                  ItemsSource="{x:Bind predictiedDurations}"
+                  Visibility="{x:Bind predictiedDurations.Count,Converter={StaticResource CountConverter}, Mode=OneWay}">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="local:PredictionItem">
+                    <StackPanel Orientation="Vertical">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0"
+                                       Text="{Binding DurationMins, Converter={StaticResource DurationToStringConverter}}"/>
+                            <TextBlock Grid.Column="1"
+                                       HorizontalAlignment="Right"
+                                       Text="{Binding Probability, Converter={StaticResource DoubleToRatioConverter}}" />
+                        </Grid>
+                        <StackPanel Orientation="Horizontal"
+                                    Spacing="4">
+                            <TextBlock x:Name="BiasRate"
+                                       x:Uid="BiasRate"
+                                       Style="{ThemeResource SmallTextStyle}" />
+                            <TextBlock Text="{x:Bind Bias, Mode=OneTime, Converter={StaticResource DoubleToRatioConverter}}"
+                                       Style="{ThemeResource SmallTextStyle}" />
+                        </StackPanel>
+                    </StackPanel>
+                    
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <RichTextBlock Grid.Row="1"
+                       Name="DefaultText"
+                       Visibility="{x:Bind predictiedDurations.Count, Converter={StaticResource NegativeCountConverter}, Mode=OneWay}"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center">
+            <Paragraph>
+                <Run FontStyle="Italic"
+                     FontWeight="Bold">No history data.</Run>
+            </Paragraph>
+        </RichTextBlock>
+    </Grid>
+</Page>

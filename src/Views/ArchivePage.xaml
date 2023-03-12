@@ -1,0 +1,99 @@
+﻿<Page
+    x:Class="DayDayUp.Views.Items.ArchivePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DayDayUp.Views.Items"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid Padding="20,0,0,0" CornerRadius="4">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <TextBlock
+           Grid.Row="0"
+           x:Name="Title"
+                    Text="Done"
+                    Style="{StaticResource SubheaderTextBlockStyle}"
+                    Margin="0,10,0,20"/>
+        
+       
+
+            <Grid Name="LeftView" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+ 
+                <TextBlock Grid.Row="0" Text="Task list" Style="{ThemeResource SubtitleTextBlockStyle}" Margin="0,0,0,0" />
+
+                <!--<ListView 
+                    Grid.Row="1"
+                        Margin="0,10,0,0"
+                        x:Name="TaskList"
+                        ItemsSource="{x:Bind ViewModel.MyTasks}"
+                        SelectedItem="{x:Bind ViewModel.SelectedTask, Mode=TwoWay}"
+                    Loaded="TaskList_Loaded"
+                    RightTapped="ListView_RightTapped"
+                    >
+
+                    <ListView.Resources>
+                        <MenuFlyout x:Name="ItemFlyout">
+                            <MenuFlyout.Items>
+                                <MenuFlyoutItem Text="Delete" Click="DeleteTaskFlyoutButton_Click"/>
+                            </MenuFlyout.Items>
+                        </MenuFlyout>
+                    </ListView.Resources>
+                    
+                    <ListView.ItemTemplate>
+                                            
+                        <DataTemplate x:Name="ListViewItem" x:DataType="models:MyTask">
+                            <StackPanel Orientation="Vertical">
+                                <Grid CornerRadius="4">
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="32"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="48"/>
+                                    </Grid.RowDefinitions>
+
+                                    <CheckBox 
+                                Grid.Column="0"
+                                IsChecked="{x:Bind Done}" Click="TaskCheckBox_Click"/>
+
+                                    <TextBlock Grid.Column="1"  x:Name="taskNameTextBlock" 
+                                    Text="{x:Bind Name}"
+                                    VerticalAlignment="Center"
+                                    Style="{ThemeResource BodyTextBlockStyle}"
+                                    Margin="6,0,0,6"/>
+
+                                    <Button Grid.Column="2"
+                                    HorizontalAlignment="Right"
+                                    Content="Refresh"
+                                    Margin="6,0,0,6"
+                                    />
+                                </Grid>
+
+                                <ProgressBar x:Name="TaskProgressBar" Value="{x:Bind Progress}" />
+                            </StackPanel>
+                            
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>-->
+            </Grid>
+
+            
+
+    </Grid>
+
+</Page>
