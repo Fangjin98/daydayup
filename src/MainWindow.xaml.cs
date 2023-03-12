@@ -18,16 +18,7 @@ using WinUICommunity.Common.Helpers;
 
 namespace DayDayUp
 {
-    public class Scenario
-    {
-        public string Title { get; set; }
-        public string ClassName { get; set; }
-        public string Icon { get; set; }
-    }
 
-    /// <summary>
-    /// An empty window that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class MainWindow : Window
     {
         public List<Scenario> Scenarios => scenarios;
@@ -57,17 +48,12 @@ namespace DayDayUp
                 {
                     Content = item.Title,
                     Tag = item.ClassName,
-                    Icon = new FontIcon() { FontFamily = new("Segoe MDL2 Assets"), Glyph = item.Icon }
+                    Icon = new FontIcon() { FontFamily = new("Segoe Fluent Icons"), Glyph = item.Icon }
                 });
             }
 
-
-            // NavView doesn't load any page by default, so load home page.
             NavView.SelectedItem = NavView.MenuItems[0];
 
-            // If navigation occurs on SelectionChanged, this isn't needed.
-            // Because we use ItemInvoked to navigate, we need to call Navigate
-            // here to load the home page.
             if (scenarios is not null && scenarios.Count > 0)
             {
                 NavView_Navigate(scenarios.First().ClassName, new Microsoft.UI.Xaml.Media.Animation.EntranceNavigationTransitionInfo());
@@ -88,11 +74,8 @@ namespace DayDayUp
                 page = Type.GetType(item.ClassName);
             }
 
-            // Get the page type before navigation so you can prevent duplicate
-            // entries in the backstack.
             var preNavPageType = ContentFrame.CurrentSourcePageType;
 
-            // Only navigate if the selected page isn't currently loaded.
             if (page is not null && !Type.Equals(preNavPageType, page))
             {
                 ContentFrame.Navigate(page, null, transitionInfo);
@@ -154,5 +137,12 @@ namespace DayDayUp
             new Scenario() { Title = "Home", ClassName = typeof(HomePage).FullName, Icon = "\uE80F" },
             new Scenario() { Title = "Archive", ClassName = typeof(ArchivePage).FullName, Icon = "\uE8B7" }
         };
+    }
+
+    public class Scenario
+    {
+        public string Title { get; set; }
+        public string ClassName { get; set; }
+        public string Icon { get; set; }
     }
 }

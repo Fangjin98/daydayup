@@ -2,7 +2,7 @@
 using Microsoft.UI.Xaml.Data;
 using System;
 
-namespace DayDayUp.Helpers.Converters
+namespace DayDayUp.UI.Converters
 {
     public class CountToVisibilityConverter : IValueConverter
     {

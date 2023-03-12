@@ -1,14 +1,14 @@
 ﻿using Microsoft.UI.Xaml.Data;
 using System;
 
-namespace DayDayUp.Helpers.Converters
+namespace DayDayUp.UI.Converters
 {
-    public class ProgressToStringConverter : IValueConverter
+    public class DoubleToRatioConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            var progress = (value as int?);
-            return progress.ToString() + "%";
+            var ratio = value as double?;
+            return Math.Round((decimal)(ratio * 100), 0).ToString() + "%";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
