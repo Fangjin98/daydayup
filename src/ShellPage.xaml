@@ -21,7 +21,7 @@
             <NavigationView.MenuItems>
                 <NavigationViewItem Margin="0,0,12,0"
                                     helpers:NavHelper.NavigateTo="views:HomePage"
-                                    Content="Home">
+                                    Content="{x:Bind ViewModel.Strings.Home}">
                     <NavigationViewItem.Icon>
                         <FontIcon FontFamily="Segoe Fluent Icons"
                                   Glyph="&#xe80f;" />
@@ -29,7 +29,7 @@
                 </NavigationViewItem>
                 <NavigationViewItem Margin="0,0,12,0"
                                     helpers:NavHelper.NavigateTo="views:ArchivePage"
-                                    Content="Archive">
+                                    Content="{x:Bind ViewModel.Strings.Archive}">
                     <NavigationViewItem.Icon>
                         <FontIcon FontFamily="Segoe Fluent Icons"
                                   Glyph="&#xec50;" />

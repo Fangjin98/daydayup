@@ -19,8 +19,8 @@ namespace DayDayUp.Services
 
         private readonly ArchivePageStrings _archivepage = new ArchivePageStrings();
         private readonly HomePageStrings _homepage = new HomePageStrings();
-        private readonly MainPageStrings _mainpage = new MainPageStrings();
         private readonly SettingsPageStrings _settingspage = new SettingsPageStrings();
+        private readonly ShellPageStrings _shellpage = new ShellPageStrings();
 
         /// <summary>
         /// Gets an instance of <see cref="LanguageManager"/>.
@@ -43,14 +43,14 @@ namespace DayDayUp.Services
         public HomePageStrings HomePage => _homepage;
 
         /// <summary>
-        /// Gets the <see cref="MainPageStrings"/>.
-        /// </summary>
-        public MainPageStrings MainPage => _mainpage;
-
-        /// <summary>
         /// Gets the <see cref="SettingsPageStrings"/>.
         /// </summary>
         public SettingsPageStrings SettingsPage => _settingspage;
+
+        /// <summary>
+        /// Gets the <see cref="ShellPageStrings"/>.
+        /// </summary>
+        public ShellPageStrings ShellPage => _shellpage;
 
         /// <summary>
         /// Gets the list of available languages in the app.
@@ -249,26 +249,6 @@ namespace DayDayUp.Services
         public string Status => _resources.GetString("Status");
     }
 
-    public class MainPageStrings : ObservableObject
-    {
-        private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("MainPage");
-
-        /// <summary>
-        /// Gets the resource AppDisplayName.
-        /// </summary>
-        public string AppDisplayName => _resources.GetString("AppDisplayName");
-
-        /// <summary>
-        /// Gets the resource Archive.
-        /// </summary>
-        public string Archive => _resources.GetString("Archive");
-
-        /// <summary>
-        /// Gets the resource Home.
-        /// </summary>
-        public string Home => _resources.GetString("Home");
-    }
-
     public class SettingsPageStrings : ObservableObject
     {
         private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("SettingsPage");
@@ -342,5 +322,25 @@ namespace DayDayUp.Services
         /// Gets the resource UseSystemSettings.
         /// </summary>
         public string UseSystemSettings => _resources.GetString("UseSystemSettings");
+    }
+
+    public class ShellPageStrings : ObservableObject
+    {
+        private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("ShellPage");
+
+        /// <summary>
+        /// Gets the resource AppDisplayName.
+        /// </summary>
+        public string AppDisplayName => _resources.GetString("AppDisplayName");
+
+        /// <summary>
+        /// Gets the resource Archive.
+        /// </summary>
+        public string Archive => _resources.GetString("Archive");
+
+        /// <summary>
+        /// Gets the resource Home.
+        /// </summary>
+        public string Home => _resources.GetString("Home");
     }
 }

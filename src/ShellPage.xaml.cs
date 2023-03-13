@@ -1,7 +1,10 @@
+using CommunityToolkit.Mvvm.DependencyInjection;
+using DayDayUp.ViewModels;
 using DayDayUp.Views;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using System;
+using Windows.Data.Xml.Dom;
 using WinUICommunity.Common.ViewModel;
 
 namespace DayDayUp;
@@ -10,13 +13,13 @@ public sealed partial class ShellPage : Page
 {
     public static ShellPage Instance { get; private set; }
 
-    public ShellViewModel ViewModel { get; } = new ShellViewModel();
+    public ShellPageViewModel ViewModel => (ShellPageViewModel) DataContext;
 
     public ShellPage()
     {
         this.InitializeComponent();
-        
-        Instance = this;
+
+        DataContext = new ShellPageViewModel();
 
         ViewModel.InitializeNavigation(ContentFrame, NavView)
             .WithSettingsPage(typeof(SettingsPage))

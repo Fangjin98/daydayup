@@ -51,7 +51,6 @@
     <Folder Include="Models\" />
     <Folder Include="Strings\en-us\" />
     <Folder Include="Strings\zh-cn\" />
-    <Folder Include="Strings\template\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Services\LanguageManager.cs">
