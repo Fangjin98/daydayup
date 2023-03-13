@@ -4,6 +4,7 @@ using DayDayUp.Services;
 using DayDayUp.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
+using System.Linq;
 using WinUICommunity.Common.Helpers;
 
 namespace DayDayUp;
@@ -26,12 +27,19 @@ public partial class App : Application
             .AddSingleton<IDataAccess, LiteDbDataAccess>()
             .AddSingleton<ISettingsProvider, SettingsProvider>()
             .AddSingleton<ThemeSelector>()
+            .AddSingleton<LanguageManager>()
             .AddSingleton<TodoManager>()
             .AddTransient<HomePageViewModel>()
             .AddTransient<ArchivePageViewModel>()
             .AddTransient<SettingsPageViewModel>()
             .BuildServiceProvider());
         Ioc.Default.GetRequiredService<ThemeSelector>().SetRequestedTheme();
+
+        string? userdefinedLanguage = Ioc.Default.GetRequiredService<ISettingsProvider>().GetSetting(PredefinedSettings.Language);
+        LanguageDefinition languageDefinition
+            = LanguageManager.Instance.AvailableLanguages.FirstOrDefault(l => string.Equals(l.InternalName, userdefinedLanguage))
+            ?? LanguageManager.Instance.AvailableLanguages[0];
+        LanguageManager.Instance.SetCurrentCulture(languageDefinition);
 
         m_window.Activate();
     }

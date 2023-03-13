@@ -17,7 +17,7 @@
               VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition x:Name="LeftPaddingColumn"
-                                  Width="*" />
+                                  Width="48" />
                 <ColumnDefinition x:Name="IconColumn"
                                   Width="Auto" />
                 <ColumnDefinition x:Name="TitleColumn"
@@ -32,17 +32,18 @@
                                   Width="0" />
             </Grid.ColumnDefinitions>
             <Image x:Name="TitleBarIcon"
-                   Source="/Assets/logo.png"
+                   Source="ms-appx:///Assets/daydayup.png"
                    Grid.Column="1"
                    Width="16"
                    Height="16"
+                   VerticalAlignment="Center"
                    Margin="8,0,0,0" />
             <TextBlock x:Name="TitleTextBlock"
                        Text="DayDayUp"
                        Style="{StaticResource CaptionTextBlockStyle}"
                        Grid.Column="2"
                        VerticalAlignment="Center"
-                       Margin="4,0,0,0" />
+                       Margin="8,0,0,0" />
             <!--<AutoSuggestBox Grid.Column="4"
                             QueryIcon="Find"
                             PlaceholderText="Search"

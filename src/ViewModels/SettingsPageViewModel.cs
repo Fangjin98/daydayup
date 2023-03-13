@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using DayDayUp.Core.Settings;
 using DayDayUp.Services;
+using System.Collections.Generic;
 
 namespace DayDayUp.ViewModels
 {
@@ -9,6 +10,15 @@ namespace DayDayUp.ViewModels
         public SettingsPageViewModel(ISettingsProvider settingsProvider)
         {
             _settingsProvider = settingsProvider;
+        }
+
+        internal List<LanguageDefinition> AvailableLanguages => LanguageManager.Instance.AvailableLanguages;
+        internal SettingsPageStrings Strings => LanguageManager.Instance.SettingsPage;
+
+        internal string Language
+        {
+            get => _settingsProvider.GetSetting(PredefinedSettings.Language);
+            set => _settingsProvider.SetSetting(PredefinedSettings.Language, value);
         }
 
         internal AppTheme Theme

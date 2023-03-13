@@ -21,7 +21,6 @@
     <Content Include="Assets\Square150x150Logo.scale-200.png" />
     <Content Include="Assets\Square44x44Logo.scale-200.png" />
     <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
-    <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
   </ItemGroup>
 
@@ -50,11 +49,37 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
+    <Folder Include="Strings\en-us\" />
+    <Folder Include="Strings\zh-cn\" />
+    <Folder Include="Strings\template\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Services\LanguageManager.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>LanguageManager.tt</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Services\LanguageManager.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>LanguageManager.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Page Update="ShellPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Services\LanguageManager.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>LanguageManager.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <!-- 
