@@ -6,12 +6,11 @@ namespace DayDayUp.Views;
 
 public sealed partial class SettingsPage : Page
 {
+    public SettingsPageViewModel ViewModel => (SettingsPageViewModel)DataContext;
 
     public SettingsPage()
     {
-        this.InitializeComponent();
+        InitializeComponent();
         DataContext = Ioc.Default.GetRequiredService<SettingsPageViewModel>();
     }
-
-    public SettingsPageViewModel ViewModel => (SettingsPageViewModel)DataContext;
 }

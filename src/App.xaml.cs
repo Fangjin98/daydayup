@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.DependencyInjection;
+using DayDayUp.Core.Settings;
 using DayDayUp.Helpers;
 using DayDayUp.Services;
 using DayDayUp.ViewModels;
@@ -19,17 +20,19 @@ public partial class App : Application
     {
         m_window = new MainWindow();
 
-        ThemeHelper.Initialize(m_window,BackdropType.Mica);
-     
+        ThemeHelper.Initialize(m_window, BackdropType.Mica);
+
         Ioc.Default.ConfigureServices(
             new ServiceCollection()
-            .AddSingleton<ISettingsService, SettingsHelper>()
             .AddSingleton<IDataAccess, LiteDbDataAccess>()
+            .AddSingleton<ISettingsProvider, SettingsProvider>()
+            .AddSingleton<ThemeSelector>()
             .AddSingleton<TodoManagementHelper>()
             .AddTransient<HomePageViewModel>()
             .AddTransient<ArchivePageViewModel>()
             .AddTransient<SettingsPageViewModel>()
             .BuildServiceProvider());
+        Ioc.Default.GetRequiredService<ThemeSelector>().SetRequestedTheme();
 
         m_window.Activate();
     }

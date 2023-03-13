@@ -4,8 +4,64 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:winuicontrols="using:WinUICommunity.SettingsUI.Controls"
+      xmlns:converters="using:DayDayUp.UI.Converters"
       mc:Ignorable="d" >
-    <Grid>
-        
-    </Grid>
+    
+    <Page.Resources>
+        <converters:EnumToBooleanConverter x:Key="EnumToBooleanConverter" />
+    </Page.Resources>
+    <StackPanel Orientation="Vertical"
+                ChildrenTransitions="{StaticResource SettingsCardsAnimations}">
+        <winuicontrols:SettingsGroup Header="Display">
+            <!--<winuicontrols:Setting Header="Languages"
+                               Description="Set the system language">
+            <winuicontrols:Setting.Icon>
+                <FontIcon Glyph="&#xe775;" />
+            </winuicontrols:Setting.Icon>
+            <winuicontrols:Setting.ActionContent>
+                <ComboBox DisplayMemberPath="DisplayName"
+                          SelectedValuePath="InternalName"
+                          ItemsSource="{x:Bind ViewModel.AvailableLanguages}"
+                          SelectedValue="{x:Bind ViewModel.Language, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></ComboBox>
+            </winuicontrols:Setting.ActionContent>
+        </winuicontrols:Setting>-->
+            <winuicontrols:Setting Header="Languages"
+                                   Description="Set the system language"
+                                   Icon="&#xe775;">
+                <winuicontrols:Setting.ActionContent>
+                    <ToggleSwitch />
+                </winuicontrols:Setting.ActionContent>
+            </winuicontrols:Setting>
+            <winuicontrols:SettingExpander IsExpanded="True">
+                <winuicontrols:SettingExpander.Header>
+                    <winuicontrols:Setting Header="Theme"
+                                           Description="Set the theme"
+                                           Icon="&#xe771;"
+                                           Style="{StaticResource ExpanderHeaderSettingStyle}" />
+                </winuicontrols:SettingExpander.Header>
+                <winuicontrols:SettingExpander.Content>
+                    <StackPanel Padding="12"
+                                Spacing="4"
+                                Margin="42,0,6,0">
+                        <RadioButton Content="Light"
+                                     IsChecked="{x:Bind ViewModel.Theme, Mode=TwoWay, ConverterParameter='Light', Converter={StaticResource EnumToBooleanConverter}}" />
+                        <RadioButton Content="Dark"
+                                     IsChecked="{x:Bind ViewModel.Theme, Mode=TwoWay, ConverterParameter='Dark', Converter={StaticResource EnumToBooleanConverter}}" />
+                        <RadioButton Content="System"
+                                     IsChecked="{x:Bind ViewModel.Theme, Mode=TwoWay, ConverterParameter='Default', Converter={StaticResource EnumToBooleanConverter}}" />
+                    </StackPanel>
+                </winuicontrols:SettingExpander.Content>
+            </winuicontrols:SettingExpander>
+        </winuicontrols:SettingsGroup>
+        <!--<TextBlock Text="{x:Bind ViewModel.Strings.About}"
+                   Style="{ThemeResource SubtitleTextStyle}" />
+        <winuicontrols:Setting Title="{x:Bind ViewModel.Strings.AppTitle}"
+                                           Description="{x:Bind ViewModel.Strings.AboutDescription}">
+            <winuicontrols:Setting.Icon>
+                <muxc:ImageIcon Source="ms-appx:///Assets/Square44x44Logo.altform-unplated_targetsize-16.png"
+                                Height="16" />
+            </winuicontrols:Setting.Icon>
+        </winuicontrols:Setting>-->
+    </StackPanel>
 </Page>

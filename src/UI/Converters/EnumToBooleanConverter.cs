@@ -1,37 +1,43 @@
-﻿using Microsoft.UI.Xaml.Data;
+﻿using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Data;
 using System;
 
-namespace DayDayUp.UI.Converters
+namespace DayDayUp.UI.Converters;
+
+public class EnumToBooleanConverter : IValueConverter
 {
-    public class EnumToBooleanConverter : IValueConverter
+    public bool IsInverted { get; set; }
+
+    public object Convert(object value, Type targetType, object parameter, string language)
     {
-        public Type EnumType { get; set; }
-
-        public object Convert(object value, Type targetType, object parameter, string language)
+        if (value is null || parameter is null || value is not Enum)
         {
-            if (parameter is string enumString)
-            {
-                if (!Enum.IsDefined(EnumType, value))
-                {
-                    throw new ArgumentException("value must be an Enum!");
-                }
-
-                var enumValue = Enum.Parse(EnumType, enumString);
-
-                return enumValue.Equals(value);
-            }
-
-            throw new ArgumentException("parameter must be an Enum name!");
+            return IsInverted;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, string language)
-        {
-            if (parameter is string enumString)
-            {
-                return Enum.Parse(EnumType, enumString);
-            }
+        string? currentState = value.ToString();
+        string? stateStrings = parameter.ToString();
 
-            throw new ArgumentException("parameter must be an Enum name!");
+        string[]? stateStringsSplitted = stateStrings.Split(',');
+        for (int i = 0; i < stateStringsSplitted.Length; i++)
+        {
+            if (string.Equals(currentState, stateStringsSplitted[i].Trim(), StringComparison.Ordinal))
+            {
+                return !IsInverted;
+            }
         }
+
+        return IsInverted;
+    }
+
+    public object ConvertBack(object value, Type targetType, object parameter, string language)
+    {
+        bool? valueBool = value as bool?;
+        if (parameter is not string parameterString || valueBool is null)
+        {
+            return DependencyProperty.UnsetValue;
+        }
+
+        return Enum.Parse(targetType, parameterString);
     }
 }
