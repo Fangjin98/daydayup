@@ -2,17 +2,16 @@
 using CommunityToolkit.Mvvm.DependencyInjection;
 using Microsoft.UI.Xaml.Controls;
 
-namespace DayDayUp.Views.Items
+namespace DayDayUp.Views;
+
+public sealed partial class SettingsPage : Page
 {
-    public sealed partial class SettingsPage : Page
+
+    public SettingsPage()
     {
-
-        public SettingsPage()
-        {
-            this.InitializeComponent();
-            DataContext = Ioc.Default.GetRequiredService<SettingsPageViewModel>();
-        }
-
-        public SettingsPageViewModel ViewModel => (SettingsPageViewModel)DataContext;
+        this.InitializeComponent();
+        DataContext = Ioc.Default.GetRequiredService<SettingsPageViewModel>();
     }
+
+    public SettingsPageViewModel ViewModel => (SettingsPageViewModel)DataContext;
 }

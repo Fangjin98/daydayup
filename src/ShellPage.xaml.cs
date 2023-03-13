@@ -1,4 +1,4 @@
-using DayDayUp.Views.Items;
+using DayDayUp.Views;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using System;

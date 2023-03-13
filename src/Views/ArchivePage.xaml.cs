@@ -5,18 +5,17 @@ using Microsoft.UI.Xaml.Controls;
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
-namespace DayDayUp.Views.Items
+namespace DayDayUp.Views;
+
+public sealed partial class ArchivePage : Page
 {
-    public sealed partial class ArchivePage : Page
+    public ArchivePageViewModel ViewModel => (ArchivePageViewModel)DataContext;
+
+    public ArchivePage()
     {
-        public ArchivePageViewModel ViewModel => (ArchivePageViewModel)DataContext;
-
-        public ArchivePage()
-        {
-            InitializeComponent();
-            DataContext = Ioc.Default.GetRequiredService<ArchivePageViewModel>();
-        }
-
-        
+        InitializeComponent();
+        DataContext = Ioc.Default.GetRequiredService<ArchivePageViewModel>();
     }
+
+    
 }
