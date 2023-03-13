@@ -1,5 +1,5 @@
-﻿using DayDayUp.Helpers;
-using DayDayUp.Models;
+﻿using DayDayUp.Models;
+using DayDayUp.Services;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,7 +7,7 @@ namespace DayDayUp.ViewModels
 {
     public class ArchivePageViewModel : BaseTodoListViewModel
     {
-        public ArchivePageViewModel(TodoManagementHelper TodoManager) :
+        public ArchivePageViewModel(TodoManager TodoManager) :
            base(TodoManager)
         {
         }

@@ -1,12 +1,12 @@
-﻿using DayDayUp.Helpers;
-using DayDayUp.Models;
+﻿using DayDayUp.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input; 
+using CommunityToolkit.Mvvm.Input;
 using Nito.AsyncEx;
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using TodoStatus = DayDayUp.Models.TodoStatus;
+using DayDayUp.Services;
 
 namespace DayDayUp.ViewModels
 {
@@ -15,7 +15,7 @@ namespace DayDayUp.ViewModels
     {
         public IAsyncRelayCommand AddTodoCommand { get; }
 
-        public HomePageViewModel(TodoManagementHelper TodoManager): base(TodoManager)
+        public HomePageViewModel(TodoManager TodoManager): base(TodoManager)
         {
             AddTodoCommand = new AsyncRelayCommand<Todo>(AddTodoAsync);
         }

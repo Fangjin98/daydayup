@@ -1,5 +1,4 @@
-﻿using DayDayUp.Helpers;
-using DayDayUp.Models;
+﻿using DayDayUp.Models;
 using DayDayUp.ViewModels;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using Microsoft.UI.Xaml;
@@ -9,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using Windows.System;
 using System.Threading.Tasks;
+using DayDayUp.Services;
 
 namespace DayDayUp.Views;
 
@@ -246,7 +246,7 @@ public sealed partial class HomePage : Page
         ContentDialog dialog = new ContentDialog();
         dialog.PrimaryButtonText = "OK";
         dialog.Content = new DurationPredictionPage(
-            Ioc.Default.GetRequiredService<TodoManagementHelper>(),
+            Ioc.Default.GetRequiredService<TodoManager>(),
             ViewModel.SelectedTodo.ExpectedDurationMins);
         dialog.XamlRoot = Content.XamlRoot;
         

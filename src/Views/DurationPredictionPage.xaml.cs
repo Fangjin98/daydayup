@@ -1,5 +1,5 @@
-﻿using DayDayUp.Helpers;
-using DayDayUp.Models;
+﻿using DayDayUp.Models;
+using DayDayUp.Services;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using System;
@@ -13,7 +13,7 @@ namespace DayDayUp.Views
     {
         public static readonly int SelectionTimes =1000;
 
-        public DurationPredictionPage(TodoManagementHelper TodoManager, int duration)
+        public DurationPredictionPage(TodoManager TodoManager, int duration)
         {
             InitializeComponent();
             baseDuration = duration;

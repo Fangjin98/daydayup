@@ -1,10 +1,10 @@
-﻿using DayDayUp.Helpers;
-using DayDayUp.Models;
+﻿using DayDayUp.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Nito.AsyncEx;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using DayDayUp.Services;
 
 namespace DayDayUp.ViewModels
 {
@@ -22,7 +22,7 @@ namespace DayDayUp.ViewModels
             set => SetProperty(ref selectedTodo, value);
         }
 
-        public BaseTodoListViewModel(TodoManagementHelper TodoManager)
+        public BaseTodoListViewModel(TodoManager TodoManager)
         {
             todoManager = TodoManager;
 
@@ -49,6 +49,6 @@ namespace DayDayUp.ViewModels
 
         protected readonly AsyncLock loadingLock = new AsyncLock();
 
-        protected readonly TodoManagementHelper todoManager;
+        protected readonly TodoManager todoManager;
     }
 }

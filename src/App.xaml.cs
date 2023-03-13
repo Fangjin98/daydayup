@@ -1,6 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.DependencyInjection;
 using DayDayUp.Core.Settings;
-using DayDayUp.Helpers;
 using DayDayUp.Services;
 using DayDayUp.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,7 +26,7 @@ public partial class App : Application
             .AddSingleton<IDataAccess, LiteDbDataAccess>()
             .AddSingleton<ISettingsProvider, SettingsProvider>()
             .AddSingleton<ThemeSelector>()
-            .AddSingleton<TodoManagementHelper>()
+            .AddSingleton<TodoManager>()
             .AddTransient<HomePageViewModel>()
             .AddTransient<ArchivePageViewModel>()
             .AddTransient<SettingsPageViewModel>()
