@@ -20,7 +20,7 @@ public partial class App : Application
     {
         m_window = new MainWindow();
 
-        ThemeHelper.Initialize(m_window, BackdropType.Mica);
+        ThemeHelper.Initialize(m_window, BackdropType.MicaAlt);
 
         Ioc.Default.ConfigureServices(
             new ServiceCollection()
@@ -33,6 +33,7 @@ public partial class App : Application
             .AddTransient<ArchivePageViewModel>()
             .AddTransient<SettingsPageViewModel>()
             .BuildServiceProvider());
+        
         Ioc.Default.GetRequiredService<ThemeSelector>().SetRequestedTheme();
 
         string? userdefinedLanguage = Ioc.Default.GetRequiredService<ISettingsProvider>().GetSetting(PredefinedSettings.Language);

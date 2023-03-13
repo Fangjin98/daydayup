@@ -31,7 +31,6 @@ namespace DayDayUp.ViewModels
                 {
                     Todos.Add(item);
                 }
-
             }
         }
     }

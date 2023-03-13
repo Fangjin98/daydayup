@@ -1,15 +1,13 @@
 ﻿using DayDayUp.ViewModels;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using Microsoft.UI.Xaml.Controls;
-
-// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
+using Microsoft.UI.Xaml;
 
 namespace DayDayUp.Views;
 
 public sealed partial class ArchivePage : Page
 {
-    public ArchivePageViewModel ViewModel => (ArchivePageViewModel)DataContext;
+    public ArchivePageViewModel ViewModel => (ArchivePageViewModel) DataContext;
 
     public ArchivePage()
     {
@@ -17,5 +15,8 @@ public sealed partial class ArchivePage : Page
         DataContext = Ioc.Default.GetRequiredService<ArchivePageViewModel>();
     }
 
-    
+    private void DataGrid_Loaded(object sender, RoutedEventArgs e)
+    {
+        ViewModel.LoadTodoCommand.ExecuteAsync(null);
+    }
 }
