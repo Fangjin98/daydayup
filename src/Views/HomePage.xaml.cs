@@ -8,6 +8,7 @@ using Microsoft.UI.Xaml.Input;
 using System;
 using System.Collections.Generic;
 using Windows.System;
+using System.Threading.Tasks;
 
 namespace DayDayUp.Views;
 
@@ -20,7 +21,6 @@ public sealed partial class HomePage : Page
     {
         InitializeComponent();
         DataContext = Ioc.Default.GetRequiredService<HomePageViewModel>();
-
     }
 
     private void newTaskTextBoxKeyUp(object sender, KeyRoutedEventArgs e)
@@ -225,7 +225,8 @@ public sealed partial class HomePage : Page
         dialog.CloseButtonText = "Cancel";
         dialog.DefaultButton = ContentDialogButton.Primary;
         dialog.Content = new DurationSettingPage(ViewModel.SelectedTodo.ExpectedDurationMins);
-
+        dialog.XamlRoot = Content.XamlRoot;
+        
         var result = await dialog.ShowAsync();
 
         if (result == ContentDialogResult.Primary)
@@ -247,7 +248,8 @@ public sealed partial class HomePage : Page
         dialog.Content = new DurationPredictionPage(
             Ioc.Default.GetRequiredService<TodoManagementHelper>(),
             ViewModel.SelectedTodo.ExpectedDurationMins);
-
-        var result = await dialog.ShowAsync();
+        dialog.XamlRoot = Content.XamlRoot;
+        
+        await dialog.ShowAsync();
     }
 }

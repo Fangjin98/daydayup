@@ -32,7 +32,6 @@ public sealed partial class ShellPage : Page
     private void Page_Loaded(object sender, RoutedEventArgs e)
     {
         ViewModel.OnLoaded();
-
     }
 
     private void navigationView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
