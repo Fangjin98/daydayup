@@ -13,7 +13,7 @@
         </Grid.RowDefinitions>
         
         <Grid x:Name="CustomTitleBar"
-              Height="48"
+              Height="36"
               VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition x:Name="LeftPaddingColumn"

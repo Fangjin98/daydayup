@@ -13,7 +13,7 @@
         <converter:DateToStringConverter x:Key="DateToStringConverter" />
         <converter:ProgressToStringConverter x:Key="ProgressToStringConverter" />
     </Page.Resources>
-    <Grid>
+    <Grid Padding="{StaticResource PagePadding}">
         <controls:DataGrid x:Name="dataGrid"
                            Loaded="DataGrid_Loaded"
                            ItemsSource="{x:Bind ViewModel.Todos}"
