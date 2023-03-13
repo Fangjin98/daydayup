@@ -309,6 +309,11 @@ namespace DayDayUp.Services
         public string DefaultLanguage => _resources.GetString("DefaultLanguage");
 
         /// <summary>
+        /// Gets the resource Display.
+        /// </summary>
+        public string Display => _resources.GetString("Display");
+
+        /// <summary>
         /// Gets the resource Language.
         /// </summary>
         public string Language => _resources.GetString("Language");

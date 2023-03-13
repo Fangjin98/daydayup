@@ -1,36 +1,29 @@
 ﻿using System;
 using Microsoft.UI.Xaml.Data;
 
-namespace DayDayUp.UI.Converters
+namespace DayDayUp.UI.Converters;
+
+public class DurationToStringConverter : IValueConverter
 {
-    public class DurationToStringConverter : IValueConverter
+    public object Convert(object value, Type targetType, object parameter, string language)
     {
-        public object Convert(object value, Type targetType, object parameter, string language)
-        {
-            var number = value as int?;
-            if (number == 0) { return "None"; }
-            else if (number < 60) { return toTimeString(number, true); }
-            else
-            {
-                var hours = System.Convert.ToInt32(number / 60);
-                var minutes = System.Convert.ToInt32(number % 60);
-                if (minutes == 0) { return toTimeString(hours, false); }
-                else
-                {
-                    return toTimeString(hours, false) + " : " + toTimeString(minutes, true);
-                }
-            }
-        }
+        var number = (value as int?);
+        var result = TimeSpan.FromMinutes((double)number);
+        var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+        var durationString = "";
 
-        public object ConvertBack(object value, Type targetType, object parameter, string language)
-        {
-            throw new NotImplementedException();
-        }
+        if (result.TotalMinutes == 0) { return loader.GetString("None"); }
 
-        private string toTimeString(int? minutes, bool isMinute)
-        {
-            if (minutes == 1) { return isMinute == true ? minutes.ToString() + " minute" : minutes.ToString() + " hour"; }
-            else return isMinute == true ? minutes.ToString() + " minutes" : minutes.ToString() + " hours";
-        }
+        if (result.Days > 0) { durationString += (result.Days.ToString() + " " + loader.GetString("Day") + " "); }
+        if (result.Hours > 0) { durationString += (result.Hours.ToString() + " " + loader.GetString("Hour") + " "); }
+        if (result.Minutes > 0) { durationString += (result.Minutes.ToString() + " " + loader.GetString("Minute")); }
+        return durationString;
+    }
+
+
+    public object ConvertBack(object value, Type targetType, object parameter, string language)
+    {
+        throw new NotImplementedException();
+    
     }
 }

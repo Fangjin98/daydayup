@@ -8,8 +8,9 @@ namespace DayDayUp.UI.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            var status = value as TodoStatus?;
-            return status == TodoStatus.Doing ? "Doing" : "Pause";
+            var status = (value as TodoStatus?);
+            var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+            return status == TodoStatus.Doing ? loader.GetString("DoingStatus") : loader.GetString("PauseStatus");
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

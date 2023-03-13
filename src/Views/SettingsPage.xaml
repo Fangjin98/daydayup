@@ -15,7 +15,7 @@
                 ChildrenTransitions="{StaticResource SettingsCardsAnimations}"
                 Padding="{StaticResource PagePadding}"
                 Spacing="4">
-        <winuicontrols:SettingsGroup Header="Display">
+        <winuicontrols:SettingsGroup Header="{x:Bind ViewModel.Strings.Display}">
             <winuicontrols:Setting Header="{x:Bind ViewModel.Strings.Language}"
                                    Description="{x:Bind ViewModel.Strings.LanguageDescription}"
                                    Icon="&#xe775;">

@@ -220,9 +220,9 @@ public sealed partial class HomePage : Page
     private async void ExpectedDurationMinsButton_Click(object sender, RoutedEventArgs e)
     {
         ContentDialog dialog = new ContentDialog();
-        dialog.Title = "Set the duration";
-        dialog.PrimaryButtonText = "Save";
-        dialog.CloseButtonText = "Cancel";
+        dialog.Title = ViewModel.Strings.SetTheDuration;
+        dialog.PrimaryButtonText = ViewModel.Strings.Save;
+        dialog.CloseButtonText = ViewModel.Strings.Cancel;
         dialog.DefaultButton = ContentDialogButton.Primary;
         dialog.Content = new DurationSettingDialog(ViewModel.SelectedTodo.ExpectedDurationMins);
         dialog.XamlRoot = Content.XamlRoot;
@@ -244,7 +244,8 @@ public sealed partial class HomePage : Page
     private async void PredictionButton_Click(object sender, RoutedEventArgs e)
     {
         ContentDialog dialog = new ContentDialog();
-        dialog.PrimaryButtonText = "OK";
+        dialog.Title = ViewModel.Strings.PredictionDuration;
+        dialog.PrimaryButtonText = ViewModel.Strings.OK;
         dialog.Content = new DurationPredictionDialog(
             Ioc.Default.GetRequiredService<TodoManager>(),
             ViewModel.SelectedTodo.ExpectedDurationMins);

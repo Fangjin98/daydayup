@@ -138,6 +138,9 @@
   <data name="DefaultLanguage" xml:space="preserve">
     <value>Same as Microsoft Windows</value>
   </data>
+  <data name="Display" xml:space="preserve">
+    <value>Display</value>
+  </data>
   <data name="Language" xml:space="preserve">
     <value>Language</value>
   </data>

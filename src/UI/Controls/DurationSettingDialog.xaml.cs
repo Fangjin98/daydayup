@@ -1,40 +1,27 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.UI.Xaml.Controls;
 using System.Collections.Generic;
-
+using System.Linq;
 
 namespace DayDayUp.Controls;
 
 public sealed partial class DurationSettingDialog : UserControl
 {
+    public int DurationResult { get => durationPicker.Duration; }
+
     public DurationSettingDialog(int duration)
     {
         this.InitializeComponent();
 
         durationPicker = new DurationPicker(duration);
-        
-        for(int i = 0; i <= 60; i++)
-        {
-            offsetValues.Add(i.ToString()); 
-        }
-
-        for (int i = 0; i < 8; i++)
-        {
-            dayOffsetValues.Add(i.ToString());
-        }
-
     }
-    public int DurationResult
-    {
-        get => durationPicker.Duration;
-    }
+
     private DurationPicker durationPicker;
-
-    private List<string> offsetValues = new List<string>();
-
-    private List<string> dayOffsetValues = new List<string>();
-
+    private List<string> minuteValues = (from minute in Enumerable.Range(0, 60) select minute.ToString()).ToList();
+    private List<string> hourValues = (from hour in Enumerable.Range(0, 24) select hour.ToString()).ToList();
+    private List<string> dayValues = (from day in Enumerable.Range(0, 8) select day.ToString()).ToList();
 }
+
 internal class DurationPicker : ObservableObject
 {
     public DurationPicker(int duration)

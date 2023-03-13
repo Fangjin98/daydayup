@@ -138,6 +138,9 @@
   <data name="DefaultLanguage" xml:space="preserve">
     <value>与操作系统相同</value>
   </data>
+  <data name="Display" xml:space="preserve">
+    <value>Display</value>
+  </data>
   <data name="Language" xml:space="preserve">
     <value>语言</value>
   </data>
