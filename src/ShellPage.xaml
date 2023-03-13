@@ -1,0 +1,43 @@
+<Page x:Class="DayDayUp.ShellPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d"
+      xmlns:helpers="using:WinUICommunity.Common.Helpers"
+      xmlns:views="using:DayDayUp.Views.Items"
+      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+      Loaded="Page_Loaded">
+    <Grid>
+        <NavigationView x:Name="NavView"
+                        AlwaysShowHeader="True"
+                        OpenPaneLength="200"
+                        CompactModeThresholdWidth="640"
+                        ExpandedModeThresholdWidth="1008"
+                        ItemInvoked="navigationView_ItemInvoked"
+                        IsBackButtonVisible="Collapsed"
+                        IsBackEnabled="False"
+                        SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}">
+            <NavigationView.MenuItems>
+                <NavigationViewItem Margin="0,0,12,0"
+                                    helpers:NavHelper.NavigateTo="views:HomePage"
+                                    Content="Home">
+                    <NavigationViewItem.Icon>
+                        <FontIcon FontFamily="Segoe Fluent Icons"
+                                  Glyph="&#xe80f;" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem Margin="0,0,12,0"
+                                    helpers:NavHelper.NavigateTo="views:ArchivePage"
+                                    Content="Archive">
+                    <NavigationViewItem.Icon>
+                        <FontIcon FontFamily="Segoe Fluent Icons"
+                                  Glyph="&#xec50;" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+            </NavigationView.MenuItems>
+            
+            <Frame x:Name="ContentFrame" />
+        </NavigationView>
+    </Grid>
+</Page>
