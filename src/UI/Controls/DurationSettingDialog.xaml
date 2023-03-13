@@ -1,5 +1,5 @@
-﻿<Page
-    x:Class="DayDayUp.Views.DurationSettingPage"
+﻿<UserControl
+    x:Class="DayDayUp.Controls.DurationSettingDialog"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -63,4 +63,4 @@
         </StackPanel>
     </StackPanel>
     
-</Page>
+</UserControl>

@@ -1,14 +1,14 @@
-﻿using DayDayUp.Models;
+﻿using CommunityToolkit.Mvvm.DependencyInjection;
+using DayDayUp.Controls;
+using DayDayUp.Models;
+using DayDayUp.Services;
 using DayDayUp.ViewModels;
-using CommunityToolkit.Mvvm.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
 using System;
 using System.Collections.Generic;
 using Windows.System;
-using System.Threading.Tasks;
-using DayDayUp.Services;
 
 namespace DayDayUp.Views;
 
@@ -224,14 +224,14 @@ public sealed partial class HomePage : Page
         dialog.PrimaryButtonText = "Save";
         dialog.CloseButtonText = "Cancel";
         dialog.DefaultButton = ContentDialogButton.Primary;
-        dialog.Content = new DurationSettingPage(ViewModel.SelectedTodo.ExpectedDurationMins);
+        dialog.Content = new DurationSettingDialog(ViewModel.SelectedTodo.ExpectedDurationMins);
         dialog.XamlRoot = Content.XamlRoot;
         
         var result = await dialog.ShowAsync();
 
         if (result == ContentDialogResult.Primary)
         {
-            DurationSettingPage tmp = (DurationSettingPage)dialog.Content;
+            DurationSettingDialog tmp = (DurationSettingDialog)dialog.Content;
             ViewModel.SelectedTodo.ExpectedDurationMins = tmp.DurationResult;
             ViewModel.Update(ViewModel.SelectedTodo);
         }
@@ -245,7 +245,7 @@ public sealed partial class HomePage : Page
     {
         ContentDialog dialog = new ContentDialog();
         dialog.PrimaryButtonText = "OK";
-        dialog.Content = new DurationPredictionPage(
+        dialog.Content = new DurationPredictionDialog(
             Ioc.Default.GetRequiredService<TodoManager>(),
             ViewModel.SelectedTodo.ExpectedDurationMins);
         dialog.XamlRoot = Content.XamlRoot;

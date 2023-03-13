@@ -50,7 +50,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
-    <Folder Include="UI\Controls\" />
   </ItemGroup>
   <ItemGroup>
     <Page Update="ShellPage.xaml">
