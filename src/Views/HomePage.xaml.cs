@@ -205,7 +205,7 @@ public sealed partial class HomePage : Page
 
     private void StartButton_Click(object sender, RoutedEventArgs e)
     {
-        var button=(AppBarButton)sender;
+        var button=(Button)sender;
         Todo todo = (Todo)button.DataContext;
         ViewModel.SwapTodoStatus(todo);
     }

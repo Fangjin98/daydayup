@@ -171,4 +171,7 @@
   <data name="None" xml:space="preserve">
     <value>无</value>
   </data>
+  <data name="HomePageProgress.Text" xml:space="preserve">
+    <value>进度为</value>
+  </data>
 </root>
