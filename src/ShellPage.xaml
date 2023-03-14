@@ -9,11 +9,8 @@
       Loaded="Page_Loaded">
     <Grid>
         <NavigationView x:Name="NavView"
+                        PaneDisplayMode="Top"
                         Background="Transparent"
-                        AlwaysShowHeader="True"
-                        OpenPaneLength="160"
-                        CompactModeThresholdWidth="500"
-                        ExpandedModeThresholdWidth="800"
                         ItemInvoked="navigationView_ItemInvoked"
                         IsBackButtonVisible="Collapsed"
                         IsBackEnabled="False"
@@ -36,8 +33,11 @@
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
             </NavigationView.MenuItems>
-            
-            <Frame x:Name="ContentFrame" />
+            <Border BorderThickness="1"
+                    BorderBrush="{ThemeResource AppBarBorderThemeBrush}">
+                <Frame x:Name="ContentFrame"
+                       CornerRadius="4" />
+            </Border>
         </NavigationView>
     </Grid>
 </Page>

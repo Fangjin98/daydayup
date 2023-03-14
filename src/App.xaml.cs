@@ -6,11 +6,13 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using System.Linq;
 using WinUICommunity.Common.Helpers;
+using WinUIEx;
 
 namespace DayDayUp;
 
 public partial class App : Application
 {
+
     public App()
     {
         this.InitializeComponent();
@@ -20,7 +22,7 @@ public partial class App : Application
     {
         m_window = new MainWindow();
 
-        ThemeHelper.Initialize(m_window, BackdropType.MicaAlt);
+        ThemeHelper.Initialize(m_window, BackdropType.MicaAlt); // WinUICommunity Helper
 
         Ioc.Default.ConfigureServices(
             new ServiceCollection()
@@ -41,7 +43,9 @@ public partial class App : Application
             = LanguageManager.Instance.AvailableLanguages.FirstOrDefault(l => string.Equals(l.InternalName, userdefinedLanguage))
             ?? LanguageManager.Instance.AvailableLanguages[0];
         LanguageManager.Instance.SetCurrentCulture(languageDefinition);
-
+        
+        m_window.SetWindowSize(500, 600); // WinUIEx method
+        m_window.CenterOnScreen();
         m_window.Activate();
     }
 

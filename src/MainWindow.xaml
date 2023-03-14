@@ -11,13 +11,12 @@
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        
         <Grid x:Name="CustomTitleBar"
               Height="36"
               VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition x:Name="LeftPaddingColumn"
-                                  Width="48" />
+                                  Width="0" />
                 <ColumnDefinition x:Name="IconColumn"
                                   Width="Auto" />
                 <ColumnDefinition x:Name="TitleColumn"
@@ -27,7 +26,7 @@
                 <ColumnDefinition x:Name="SearchColumn"
                                   Width="Auto" />
                 <ColumnDefinition x:Name="RightDragColumn"
-                                  Width="*" />
+                                  Width="0" />
                 <ColumnDefinition x:Name="RightPaddingColumn"
                                   Width="0" />
             </Grid.ColumnDefinitions>
@@ -44,13 +43,17 @@
                        Grid.Column="2"
                        VerticalAlignment="Center"
                        Margin="8,0,0,0" />
-            <!--<AutoSuggestBox Grid.Column="4"
-                            QueryIcon="Find"
-                            PlaceholderText="Search"
-                            BorderThickness="0"
-                            VerticalAlignment="Center"
-                            Width="260"
-                            Margin="4,0" />-->
+            <ToggleButton x:Name="AlwaysOnTopButton"
+                          Grid.Column="4"
+                          Padding="0"
+                          VerticalAlignment="Center"
+                          Width="32"
+                          Margin="4,0,4,0"
+                          Checked="AlwaysOnTopButton_Checked"
+                          Unchecked="AlwaysOnTopButton_Unchecked">
+                <FontIcon FontFamily="Segoe Fluent Icons"
+                          Glyph="&#xf71c;" />
+            </ToggleButton>
         </Grid>
         
         <local:ShellPage Grid.Row="1" />

@@ -84,7 +84,7 @@
         <SplitView  Grid.Row="1"
                     x:Name="HomeSplitView"
                     IsPaneOpen="False"
-                    OpenPaneLength="300"
+                    OpenPaneLength="200"
                     CompactPaneLength="48"
                     DisplayMode="Inline"
                     PanePlacement="Right"

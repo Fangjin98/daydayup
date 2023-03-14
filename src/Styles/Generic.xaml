@@ -6,7 +6,7 @@
     <Thickness x:Key="ElementMargin">0,0,0,12</Thickness>
     <Thickness x:Key="ContentMargin">12,0,0,0</Thickness>
     <x:Double x:Key="ItemHeight">52</x:Double>
-    <Thickness x:Key="PagePadding">36,12,36,12</Thickness>
+    <Thickness x:Key="PagePadding">24,12,24,12</Thickness>
     <!--<Style x:Key="DayItemStyle"
            BasedOn="{StaticResource DefaultButtonStyle}"
            TargetType="ListViewItem">
