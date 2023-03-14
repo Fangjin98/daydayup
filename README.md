@@ -13,7 +13,7 @@
 </p>
 
 <p align="center">
-  <img src="/images/screenshots_homepage.png">
+  <img src="/images/screenshot_homepage.png">
 </p>
 
 ## Introduction
@@ -66,6 +66,20 @@ Status |          Features     |  Memo  |
 🔲| _CLI Support_ | |
 
 ✅ Supported | 🔁 In progress | 🔲 Not started
+
+## Screenshots
+
+<p align="center">
+  <img src="/images/screenshot_homepage1.png">
+</p>
+
+<p align="center">
+  <img src="/images/screenshot_archivepage.png">
+</p>
+
+<p align="center">
+  <img src="/images/screenshot_settingspage.png">
+</p>
 
 ## Acknowledgments
 
