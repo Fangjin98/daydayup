@@ -5,25 +5,22 @@ using DayDayUp.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using System.Linq;
-using WinUICommunity.Common.Helpers;
+using WinUICommunity;
 using WinUIEx;
 
 namespace DayDayUp;
 
 public partial class App : Application
 {
+    public ThemeManager themeManager { get; set; }
 
     public App()
     {
-        this.InitializeComponent();
+        InitializeComponent();
     }
 
     protected override void OnLaunched(LaunchActivatedEventArgs args)
     {
-        m_window = new MainWindow();
-
-        ThemeHelper.Initialize(m_window, BackdropType.MicaAlt); // WinUICommunity Helper
-
         Ioc.Default.ConfigureServices(
             new ServiceCollection()
             .AddSingleton<IDataAccess, LiteDbDataAccess>()
@@ -36,6 +33,17 @@ public partial class App : Application
             .AddTransient<SettingsPageViewModel>()
             .BuildServiceProvider());
         
+        m_window = new MainWindow();
+
+        themeManager = new ThemeManager(m_window, new ThemeOptions
+        {
+            BackdropType = BackdropType.MicaAlt,
+            ElementTheme = ElementTheme.Default,
+            TitleBarCustomization = new TitleBarCustomization
+            {
+                TitleBarType = TitleBarType.AppWindow
+            }
+        });
         Ioc.Default.GetRequiredService<ThemeSelector>().SetRequestedTheme();
 
         string? userdefinedLanguage = Ioc.Default.GetRequiredService<ISettingsProvider>().GetSetting(PredefinedSettings.Language);

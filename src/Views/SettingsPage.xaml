@@ -4,7 +4,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:winuicontrols="using:WinUICommunity.SettingsUI.Controls"
+      xmlns:wuc="using:WinUICommunity"
       xmlns:converters="using:DayDayUp.UI.Converters"
       mc:Ignorable="d"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -12,49 +12,48 @@
     <Page.Resources>
         <converters:EnumToBooleanConverter x:Key="EnumToBooleanConverter" />
     </Page.Resources>
-    <StackPanel Orientation="Vertical"
-                ChildrenTransitions="{StaticResource SettingsCardsAnimations}"
-                Padding="{StaticResource PagePadding}"
-                Spacing="4">
-        <winuicontrols:SettingsGroup Header="{x:Bind ViewModel.Strings.Display}">
-            <winuicontrols:Setting Header="{x:Bind ViewModel.Strings.Language}"
-                                   Description="{x:Bind ViewModel.Strings.LanguageDescription}"
-                                   Icon="&#xe775;">
-                <winuicontrols:Setting.ActionContent>
+    <ScrollViewer  VerticalScrollMode="Enabled"
+                   VerticalScrollBarVisibility="Auto">
+        <StackPanel Orientation="Vertical"
+                    ChildrenTransitions="{StaticResource SettingsCardsAnimations}"
+                    Padding="{StaticResource PagePadding}"
+                    Spacing="4">
+            <wuc:SettingsGroup Header="{x:Bind ViewModel.Strings.Display}">
+                <wuc:SettingsCard Header="{x:Bind ViewModel.Strings.Language}"
+                                  Description="{x:Bind ViewModel.Strings.LanguageDescription}"
+                                  HeaderIcon="{wuc:FontIcon FontFamily={StaticResource SymbolThemeFontFamily}, Glyph=&#xe775;}">
                     <ComboBox DisplayMemberPath="DisplayName"
                               SelectedValuePath="InternalName"
                               ItemsSource="{x:Bind ViewModel.AvailableLanguages}"
                               SelectedValue="{x:Bind ViewModel.Language, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></ComboBox>
-                </winuicontrols:Setting.ActionContent>
-            </winuicontrols:Setting>
-            <winuicontrols:SettingExpander IsExpanded="True">
-                <winuicontrols:SettingExpander.Header>
-                    <winuicontrols:Setting Header="{x:Bind ViewModel.Strings.AppTheme}"
-                                           Description="{x:Bind ViewModel.Strings.AppThemeDescription}"
-                                           Icon="&#xe771;"
-                                           Style="{StaticResource ExpanderHeaderSettingStyle}" />
-                </winuicontrols:SettingExpander.Header>
-                <winuicontrols:SettingExpander.Content>
-                    <StackPanel Padding="12"
-                                Spacing="4"
-                                Margin="42,0,6,0">
-                        <RadioButton Content="{x:Bind ViewModel.Strings.Light}"
-                                     IsChecked="{x:Bind ViewModel.Theme, Mode=TwoWay, ConverterParameter='Light', Converter={StaticResource EnumToBooleanConverter}}" />
-                        <RadioButton Content="{x:Bind ViewModel.Strings.Dark}"
-                                     IsChecked="{x:Bind ViewModel.Theme, Mode=TwoWay, ConverterParameter='Dark', Converter={StaticResource EnumToBooleanConverter}}" />
-                        <RadioButton Content="{x:Bind ViewModel.Strings.UseSystemSettings}"
-                                     IsChecked="{x:Bind ViewModel.Theme, Mode=TwoWay, ConverterParameter='Default', Converter={StaticResource EnumToBooleanConverter}}" />
-                    </StackPanel>
-                </winuicontrols:SettingExpander.Content>
-            </winuicontrols:SettingExpander>
-        </winuicontrols:SettingsGroup>
-        <winuicontrols:SettingsGroup Header="{x:Bind ViewModel.Strings.About}">
-            <winuicontrols:Setting Header="{x:Bind ViewModel.Strings.AppTitle}"
-                                   Description="{x:Bind ViewModel.Strings.AboutDescription}">
-                <winuicontrols:Setting.Icon>
-                    <ImageIcon Source="ms-appx:///Assets/Square44x44Logo.altform-unplated_targetsize-16.png"/>
-                </winuicontrols:Setting.Icon>
-            </winuicontrols:Setting>
-        </winuicontrols:SettingsGroup>
-    </StackPanel>
+                </wuc:SettingsCard>
+                <wuc:SettingsExpander Header="{x:Bind ViewModel.Strings.AppTheme}"
+                                      Description="{x:Bind ViewModel.Strings.AppThemeDescription}"
+                                      HeaderIcon="{wuc:FontIcon FontFamily={StaticResource SymbolThemeFontFamily}, Glyph=&#xe771;}"
+                                      IsExpanded="False">
+                    <wuc:SettingsExpander.Items>
+                        <wuc:SettingsCard HorizontalContentAlignment="Stretch"
+                                          VerticalContentAlignment="Stretch"
+                                          ContentAlignment="Left">
+                            <StackPanel>
+                                <RadioButton Content="{x:Bind ViewModel.Strings.Light}"
+                                             IsChecked="{x:Bind ViewModel.Theme, Mode=TwoWay, ConverterParameter='Light', Converter={StaticResource EnumToBooleanConverter}}" />
+                                <RadioButton Content="{x:Bind ViewModel.Strings.Dark}"
+                                             IsChecked="{x:Bind ViewModel.Theme, Mode=TwoWay, ConverterParameter='Dark', Converter={StaticResource EnumToBooleanConverter}}" />
+                                <RadioButton Content="{x:Bind ViewModel.Strings.UseSystemSettings}"
+                                             IsChecked="{x:Bind ViewModel.Theme, Mode=TwoWay, ConverterParameter='Default', Converter={StaticResource EnumToBooleanConverter}}" />
+                            </StackPanel>
+                        </wuc:SettingsCard>
+                    </wuc:SettingsExpander.Items>
+                </wuc:SettingsExpander>
+            </wuc:SettingsGroup>
+            <wuc:SettingsGroup Header="{x:Bind ViewModel.Strings.About}">
+                <wuc:SettingsCard Header="{x:Bind ViewModel.Strings.AppTitle}"
+                                  Description="{x:Bind ViewModel.Strings.AboutDescription}"
+                                  HeaderIcon="{wuc:BitmapIcon Source=/Assets/Square44x44Logo.altform-unplated_targetsize-16.png}"></wuc:SettingsCard>
+                <HyperlinkButton Content="{x:Bind ViewModel.Strings.GitHub}"
+                                 NavigateUri="https://github.com/Fangjin98/daydayup" />
+            </wuc:SettingsGroup>
+        </StackPanel>
+    </ScrollViewer>
 </Page>

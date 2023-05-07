@@ -20,7 +20,7 @@ public sealed partial class HomePage : Page
     public HomePage()
     {
         InitializeComponent();
-        DataContext = Ioc.Default.GetRequiredService<HomePageViewModel>();
+        DataContext = Ioc.Default.GetService<HomePageViewModel>();
     }
 
     private void newTaskTextBoxKeyUp(object sender, KeyRoutedEventArgs e)
@@ -160,7 +160,7 @@ public sealed partial class HomePage : Page
     {
         HomeSplitView.IsPaneOpen = false;
     }
-    
+
     private void TaskList_Loaded(object sender, RoutedEventArgs e)
     {
         ViewModel.LoadTodoCommand.ExecuteAsync(null);
@@ -168,9 +168,9 @@ public sealed partial class HomePage : Page
 
     private void TaskList_ItemClick(object sender, TappedRoutedEventArgs e)
     {
-        if(((FrameworkElement)e.OriginalSource).DataContext as Todo == null)
+        if (((FrameworkElement)e.OriginalSource).DataContext as Todo == null)
         {
-            HomeSplitView.IsPaneOpen =false;
+            HomeSplitView.IsPaneOpen = false;
         }
         else
         {
@@ -205,7 +205,7 @@ public sealed partial class HomePage : Page
 
     private void StartButton_Click(object sender, RoutedEventArgs e)
     {
-        var button=(Button)sender;
+        var button = (Button)sender;
         Todo todo = (Todo)button.DataContext;
         ViewModel.SwapTodoStatus(todo);
     }
@@ -226,7 +226,7 @@ public sealed partial class HomePage : Page
         dialog.DefaultButton = ContentDialogButton.Primary;
         dialog.Content = new DurationSettingDialog(ViewModel.SelectedTodo.ExpectedDurationMins);
         dialog.XamlRoot = Content.XamlRoot;
-        
+
         var result = await dialog.ShowAsync();
 
         if (result == ContentDialogResult.Primary)
@@ -250,7 +250,7 @@ public sealed partial class HomePage : Page
             Ioc.Default.GetRequiredService<TodoManager>(),
             ViewModel.SelectedTodo.ExpectedDurationMins);
         dialog.XamlRoot = Content.XamlRoot;
-        
+
         await dialog.ShowAsync();
     }
 }

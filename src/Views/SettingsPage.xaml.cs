@@ -11,6 +11,6 @@ public sealed partial class SettingsPage : Page
     public SettingsPage()
     {
         InitializeComponent();
-        DataContext = Ioc.Default.GetRequiredService<SettingsPageViewModel>();
+        DataContext = Ioc.Default.GetService<SettingsPageViewModel>();
     }
 }

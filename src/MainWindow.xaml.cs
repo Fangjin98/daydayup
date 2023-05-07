@@ -1,6 +1,9 @@
+using DayDayUp.Services;
+using DayDayUp.Views;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using WinUICommunity.Common.Helpers;
+using System;
+using WinUICommunity;
 using WinUIEx;
 
 namespace DayDayUp;
@@ -9,12 +12,16 @@ namespace DayDayUp;
 public sealed partial class MainWindow : Window
 {
     public Grid ApplicationTitleBar => CustomTitleBar;
+    public NavigationManager navigationManager { get; set; }
+    internal static MainWindow Instance { get; private set; }
+    internal ShellPageStrings Strings => LanguageManager.Instance.ShellPage;
 
     public MainWindow()
     {
-        this.InitializeComponent();
+        InitializeComponent();
+        Instance = this;
 
-        TitleBarHelper.Initialize(this, TitleTextBlock,
+        var titleBarHelper = TitleBarHelper.Initialize(this, TitleTextBlock,
             CustomTitleBar,
             LeftPaddingColumn,
             IconColumn,
@@ -23,6 +30,17 @@ public sealed partial class MainWindow : Window
             SearchColumn,
             RightDragColumn,
             RightPaddingColumn);
+        navigationManager = new NavigationManager(NavView, new NavigationViewOptions
+        {
+            DefaultPage = typeof(HomePage),
+            SettingsPage = typeof(SettingsPage)
+        }, ContentFrame);
+    }
+
+    public void Navigate(string uniqeId)
+    {
+        Type pageType = Type.GetType(uniqeId);
+        ContentFrame.Navigate(pageType);
     }
 
     private void AlwaysOnTopButton_Checked(object sender, RoutedEventArgs e)

@@ -1,7 +1,7 @@
 ﻿using DayDayUp.Core.Settings;
 using Microsoft.UI.Xaml;
 using System;
-using WinUICommunity.Common.Helpers;
+using WinUICommunity;
 
 namespace DayDayUp.Services;
 
@@ -32,11 +32,11 @@ public class ThemeSelector
 
         if (theme == AppTheme.Dark)
         {
-            ThemeHelper.ChangeTheme(ElementTheme.Dark);
+            (Application.Current as App).themeManager.SetCurrentTheme(ElementTheme.Dark);
         }
         else if (theme == AppTheme.Light)
         {
-            ThemeHelper.ChangeTheme(ElementTheme.Light);
+            (Application.Current as App).themeManager.SetCurrentTheme(ElementTheme.Light);
         }
     }
 

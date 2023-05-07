@@ -141,6 +141,9 @@
   <data name="Display" xml:space="preserve">
     <value>Display</value>
   </data>
+  <data name="GitHub" xml:space="preserve">
+    <value>GitHub</value>
+  </data>
   <data name="Language" xml:space="preserve">
     <value>语言</value>
   </data>

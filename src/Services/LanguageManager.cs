@@ -294,6 +294,11 @@ namespace DayDayUp.Services
         public string Display => _resources.GetString("Display");
 
         /// <summary>
+        /// Gets the resource GitHub.
+        /// </summary>
+        public string GitHub => _resources.GetString("GitHub");
+
+        /// <summary>
         /// Gets the resource Language.
         /// </summary>
         public string Language => _resources.GetString("Language");

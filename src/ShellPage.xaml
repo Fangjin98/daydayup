@@ -4,29 +4,26 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:views="using:DayDayUp.Views"
-      xmlns:helpers="using:WinUICommunity.Common.Helpers"
-      mc:Ignorable="d"
-      Loaded="Page_Loaded">
+      xmlns:winuicomm="using:WinUICommunity"
+      mc:Ignorable="d">
     <Grid>
         <NavigationView x:Name="NavView"
                         PaneDisplayMode="Top"
                         Background="Transparent"
-                        ItemInvoked="navigationView_ItemInvoked"
                         IsBackButtonVisible="Collapsed"
-                        IsBackEnabled="False"
-                        SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}">
+                        IsBackEnabled="False">
             <NavigationView.MenuItems>
                 <NavigationViewItem Margin="0,0,0,0"
-                                    helpers:NavHelper.NavigateTo="views:HomePage"
-                                    Content="{x:Bind ViewModel.Strings.Home}">
+                                    winuicomm:NavHelper.NavigateTo="views:HomePage"
+                                    Content="{x:Bind Strings.Home}">
                     <NavigationViewItem.Icon>
                         <FontIcon FontFamily="Segoe Fluent Icons"
                                   Glyph="&#xe80f;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
                 <NavigationViewItem Margin="0,0,0,0"
-                                    helpers:NavHelper.NavigateTo="views:ArchivePage"
-                                    Content="{x:Bind ViewModel.Strings.Archive}">
+                                    winuicomm:NavHelper.NavigateTo="views:ArchivePage"
+                                    Content="{x:Bind Strings.Archive}">
                     <NavigationViewItem.Icon>
                         <FontIcon FontFamily="Segoe Fluent Icons"
                                   Glyph="&#xec50;" />

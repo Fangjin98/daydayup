@@ -1,41 +1,31 @@
+using DayDayUp.Services;
 using DayDayUp.ViewModels;
 using DayDayUp.Views;
-using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using System;
+using WinUICommunity;
 
 namespace DayDayUp;
 
 public sealed partial class ShellPage : Page
 {
+    internal ShellPageStrings Strings => LanguageManager.Instance.ShellPage;
     public static ShellPage Instance { get; private set; }
-
-    public ShellPageViewModel ViewModel => (ShellPageViewModel) DataContext;
+    public NavigationManager navigationManager { get; set; }
 
     public ShellPage()
     {
-        this.InitializeComponent();
-
-        DataContext = new ShellPageViewModel();
-
-        ViewModel.InitializeNavigation(ContentFrame, NavView)
-            .WithSettingsPage(typeof(SettingsPage))
-            .WithDefaultPage(typeof(HomePage));
+        InitializeComponent();
+        navigationManager = new NavigationManager(NavView, new NavigationViewOptions
+        {
+            DefaultPage = typeof(HomePage),
+            SettingsPage = typeof(SettingsPage)
+        }, ContentFrame);
     }
 
     public void Navigate(string uniqeId)
     {
         Type pageType = Type.GetType(uniqeId);
         ContentFrame.Navigate(pageType);
-    }
-
-    private void Page_Loaded(object sender, RoutedEventArgs e)
-    {
-        ViewModel.OnLoaded();
-    }
-
-    private void navigationView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
-    {
-        ViewModel.OnItemInvoked(args);
     }
 }
