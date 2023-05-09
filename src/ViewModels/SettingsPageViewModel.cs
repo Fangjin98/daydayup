@@ -1,6 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using DayDayUp.Core.Settings;
 using DayDayUp.Services;
+using System;
 using System.Collections.Generic;
 
 namespace DayDayUp.ViewModels
@@ -25,6 +27,11 @@ namespace DayDayUp.ViewModels
         {
             get => _settingsProvider.GetSetting(PredefinedSettings.Theme);
             set => _settingsProvider.SetSetting(PredefinedSettings.Theme, value);
+        }
+
+        internal void ExportToJson(string filePath)
+        {
+            Ioc.Default.GetRequiredService<IDataAccess>().ExportToJson(filePath);
         }
 
         private readonly ISettingsProvider _settingsProvider;

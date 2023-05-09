@@ -13,6 +13,7 @@ namespace DayDayUp;
 public partial class App : Application
 {
     public ThemeManager themeManager { get; set; }
+    public Window MWindow => m_window;
 
     public App()
     {

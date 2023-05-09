@@ -47,6 +47,25 @@
                     </wuc:SettingsExpander.Items>
                 </wuc:SettingsExpander>
             </wuc:SettingsGroup>
+            <wuc:SettingsGroup Header="Control">
+                <wuc:SettingsCard Header="Sync"
+                                  Description="Sync todo data (Last sync date xxx)"
+                                  HeaderIcon="{wuc:FontIcon FontFamily={StaticResource SymbolThemeFontFamily}, Glyph=&#xE895;}">
+                    <Button Content="Sync (TODO)" />
+                </wuc:SettingsCard>
+                <wuc:SettingsCard Header="Import"
+                                  Description="Import todo data"
+                                  HeaderIcon="{wuc:FontIcon FontFamily={StaticResource SymbolThemeFontFamily}, Glyph=&#xEDE1;}">
+                    <Button Content="Open a folder (TODO)" />
+                </wuc:SettingsCard>
+                <wuc:SettingsCard Name="ExportData"
+                                  Header="{x:Bind ViewModel.Strings.Export}"
+                                  HeaderIcon="{wuc:FontIcon FontFamily={StaticResource SymbolThemeFontFamily}, Glyph=&#xEDE2;}">
+                    <Button Name="OpenExportFolder"
+                            Content="{x:Bind ViewModel.Strings.PickAFolder}"
+                            Click="OpenExportFolder_Click"/>
+                </wuc:SettingsCard>
+            </wuc:SettingsGroup>
             <wuc:SettingsGroup Header="{x:Bind ViewModel.Strings.About}">
                 <wuc:SettingsCard Header="{x:Bind ViewModel.Strings.AppTitle}"
                                   Description="{x:Bind ViewModel.Strings.AboutDescription}"

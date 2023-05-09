@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,6 +20,8 @@ namespace DayDayUp.Services
         Task DeleteDataAsync(Todo item);
 
         Task UpdateDataAsync(Todo item);
+
+        void ExportToJson(string path);
     }
 
     public class LiteDbDataAccess : IDataAccess
@@ -26,9 +29,15 @@ namespace DayDayUp.Services
         public LiteDbDataAccess()
         {
             name = "MyTodos";
-
             var filePath = Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, name);
+            Debug.WriteLine(filePath, "LiteDB");
             db = new LiteDatabase(filePath);
+        }
+
+        public void ExportToJson(string outputPath)
+        {
+            if(File.Exists(outputPath)) { File.Delete(outputPath); }
+            db.Execute(string.Format("SELECT $  INTO $file('{0}') FROM Todo;", outputPath));
         }
 
         public async void AddDataAsync(Todo item)
@@ -62,6 +71,5 @@ namespace DayDayUp.Services
         private LiteDatabase db;
 
         private string name;
-
     }
 }

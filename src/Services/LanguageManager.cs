@@ -294,6 +294,16 @@ namespace DayDayUp.Services
         public string Display => _resources.GetString("Display");
 
         /// <summary>
+        /// Gets the resource Export.
+        /// </summary>
+        public string Export => _resources.GetString("Export");
+
+        /// <summary>
+        /// Gets the resource ExportAs.
+        /// </summary>
+        public string ExportAs => _resources.GetString("ExportAs");
+
+        /// <summary>
         /// Gets the resource GitHub.
         /// </summary>
         public string GitHub => _resources.GetString("GitHub");
@@ -317,6 +327,16 @@ namespace DayDayUp.Services
         /// Gets the resource MenuDisplayName.
         /// </summary>
         public string MenuDisplayName => _resources.GetString("MenuDisplayName");
+
+        /// <summary>
+        /// Gets the resource OperationCanceled.
+        /// </summary>
+        public string OperationCanceled => _resources.GetString("OperationCanceled");
+
+        /// <summary>
+        /// Gets the resource PickAFolder.
+        /// </summary>
+        public string PickAFolder => _resources.GetString("PickAFolder");
 
         /// <summary>
         /// Gets the resource Settings.

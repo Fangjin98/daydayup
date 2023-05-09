@@ -141,6 +141,12 @@
   <data name="Display" xml:space="preserve">
     <value>Display</value>
   </data>
+  <data name="Export" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="ExportAs" xml:space="preserve">
+    <value>Export as</value>
+  </data>
   <data name="GitHub" xml:space="preserve">
     <value>GitHub</value>
   </data>
@@ -155,6 +161,12 @@
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>设置</value>
+  </data>
+  <data name="OperationCanceled" xml:space="preserve">
+    <value>操作已取消</value>
+  </data>
+  <data name="PickAFolder" xml:space="preserve">
+    <value>选择文件夹</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>设置</value>
