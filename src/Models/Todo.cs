@@ -13,6 +13,7 @@ public class Todo : ObservableObject
     public List<DateTime> TimeStamps { get; set; }
     public string Description { get; set; }
     public bool IsFinished { get; set; }
+    // TODO: redesign, remove pause procedure.
 
     public string Name
     {
@@ -32,6 +33,7 @@ public class Todo : ObservableObject
         set => SetProperty(ref status, value);
     }
 
+    // TODO: reimplementation
     [BsonIgnore]
     public int DurationMins
     {
@@ -137,10 +139,4 @@ public class Todo : ObservableObject
     private string name;
     private int expectedDurationMins;
     private TodoStatus status;
-}
-
-public enum TodoStatus
-{
-    Doing = 0,
-    Pause = 1
 }
