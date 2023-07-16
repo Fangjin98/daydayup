@@ -1,5 +1,6 @@
 ﻿using DayDayUp.Models;
 using System.Collections.Generic;
+using Windows.Storage;
 using System.Threading.Tasks;
 
 namespace DayDayUp.Services
@@ -16,6 +17,8 @@ namespace DayDayUp.Services
 
         Task UpdateDataAsync(Todo item);
 
-        void ExportToJson(string path);
+        void Export(string path);
+
+        void Import(StorageFile file);
     }
 }

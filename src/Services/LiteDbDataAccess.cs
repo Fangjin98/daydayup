@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DayDayUp.Models;
 using LiteDB;
+using Windows.Storage;
 
 namespace DayDayUp.Services
 {
@@ -19,10 +20,13 @@ namespace DayDayUp.Services
             db = new LiteDatabase(filePath);
         }
 
-        public void ExportToJson(string outputPath)
+        public void Export(string outputPath)
         {
             if(File.Exists(outputPath)) { File.Delete(outputPath); }
             db.Execute(string.Format("SELECT $  INTO $file('{0}') FROM Todo;", outputPath));
+        }
+
+        public void Import(StorageFile file) {
         }
 
         public async void AddDataAsync(Todo item)

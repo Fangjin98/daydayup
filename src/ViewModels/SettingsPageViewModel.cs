@@ -18,18 +18,22 @@ namespace DayDayUp.ViewModels
     {
         public event EventHandler? ThemeChanged;
 
-        internal List<Language> AvailableLanguages => LanguageManager.Instance.AvailableLanguages;
+        internal List<ApplicationLanguage> AvailableLanguages => LanguageManager.Instance.AvailableLanguages;
+        
         internal SettingsPageStrings Strings => LanguageManager.Instance.SettingsPage;
+        
         internal string Language
         {
             get => settingsManager.GetValue<string>(settings.Language.Title);
             set => settingsManager.SetValue(settings.Language.Title, value);
         }
+        
         internal AppTheme Theme
         {
             get => settingsManager.GetValue<AppTheme>(settings.Theme.Title);
             set => settingsManager.SetValue(settings.Theme.Title, value);
         }
+
         private string exportDescription;
         internal string ExportDescription { 
             get => exportDescription;
@@ -41,6 +45,24 @@ namespace DayDayUp.ViewModels
             this.settingsManager = settingsManager;
             this.settings = settings;
             settingsManager.SettingChanged += SettingsManager_ThemeChanged;
+        }
+
+        [RelayCommand]
+        private async Task ImportFromJson()
+        {
+            var openPicker = new FileOpenPicker();
+            var window = (Application.Current as App)?.CurrentWindow as MainWindow;
+            var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(window);
+            WinRT.Interop.InitializeWithWindow.Initialize(openPicker, hWnd);
+
+            openPicker.ViewMode = PickerViewMode.Thumbnail;
+            openPicker.FileTypeFilter.Add(".json");
+
+            var file = await openPicker.PickSingleFileAsync();
+            if (file != null)
+            {
+                Ioc.Default.GetRequiredService<IDataAccess>().Import(file);
+            }
         }
 
         [RelayCommand]
@@ -61,7 +83,7 @@ namespace DayDayUp.ViewModels
                 StorageApplicationPermissions.FutureAccessList.AddOrReplace("PickedFolderToken", folder);
                 var fileName = "Todo.json";
                 var outputFile = string.Format("{0}/{1}", folder.Path.Replace("\\", "/").Replace("\"", "/"), fileName);
-                Ioc.Default.GetRequiredService<IDataAccess>().ExportToJson(outputFile);
+                Ioc.Default.GetRequiredService<IDataAccess>().Export(outputFile);
                 ExportDescription = outputFile;
             }
             else

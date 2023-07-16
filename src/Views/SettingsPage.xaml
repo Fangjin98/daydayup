@@ -48,22 +48,20 @@
                 </wuc:SettingsExpander>
             </wuc:SettingsGroup>
             <wuc:SettingsGroup Header="Control">
-                <wuc:SettingsCard Header="Sync"
+                <!--<wuc:SettingsCard Header="Sync"
                                   Description="Sync todo data (Last sync date xxx)"
                                   HeaderIcon="{wuc:FontIcon FontFamily={StaticResource SymbolThemeFontFamily}, Glyph=&#xE895;}">
                     <Button Content="Sync (TODO)" />
-                </wuc:SettingsCard>
-                <wuc:SettingsCard Header="Import"
-                                  Description="Import todo data"
+                </wuc:SettingsCard>-->
+                <wuc:SettingsCard Header="{x:Bind ViewModel.Strings.Import}"
                                   HeaderIcon="{wuc:FontIcon FontFamily={StaticResource SymbolThemeFontFamily}, Glyph=&#xEDE1;}">
-                    <Button Content="Open a folder (TODO)" />
+                    <Button Content="{x:Bind ViewModel.Strings.PickAJsonFile}"
+                            Command="{x:Bind ViewModel.ImportFromJsonCommand}"/>
                 </wuc:SettingsCard>
-                <wuc:SettingsCard Name="ExportData"
-                                  Header="{x:Bind ViewModel.Strings.Export}"
-                                  HeaderIcon="{wuc:FontIcon FontFamily={StaticResource SymbolThemeFontFamily}, Glyph=&#xEDE2;}"
-                                  Description="{x:Bind ViewModel.ExportDescription, Mode=OneWay}">
-                    <Button Name="OpenExportFolder"
-                            Content="{x:Bind ViewModel.Strings.PickAFolder}"
+                <wuc:SettingsCard Header="{x:Bind ViewModel.Strings.Export}"
+                                  Description="{x:Bind ViewModel.ExportDescription, Mode=OneWay}"
+                                  HeaderIcon="{wuc:FontIcon FontFamily={StaticResource SymbolThemeFontFamily}, Glyph=&#xEDE2;}">
+                    <Button Content="{x:Bind ViewModel.Strings.PickAFolder}"
                             Command="{x:Bind ViewModel.ExportAsJsonCommand}"/>
                 </wuc:SettingsCard>
             </wuc:SettingsGroup>
