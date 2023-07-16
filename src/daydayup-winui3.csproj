@@ -65,7 +65,6 @@
     <ProjectCapability Include="Msix" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
     <Folder Include="Strings\en-us\" />
     <Folder Include="Strings\zh-cn\" />
   </ItemGroup>
