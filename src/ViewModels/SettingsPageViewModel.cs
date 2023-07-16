@@ -1,16 +1,23 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using CommunityToolkit.Mvvm.Input;
 using DayDayUp.Models;
 using DayDayUp.Services;
 using Microsoft.UI.Xaml;
 using System;
 using System.Collections.Generic;
+using Windows.Storage.AccessCache;
+using Windows.Storage.Pickers;
+using Windows.Storage;
 using WinUICommunity;
+using System.Threading.Tasks;
 
 namespace DayDayUp.ViewModels
 {
-    public class SettingsPageViewModel : ObservableObject
+    public partial class SettingsPageViewModel : ObservableObject
     {
+        public event EventHandler? ThemeChanged;
+
         internal List<Language> AvailableLanguages => LanguageManager.Instance.AvailableLanguages;
         internal SettingsPageStrings Strings => LanguageManager.Instance.SettingsPage;
         internal string Language
@@ -23,8 +30,12 @@ namespace DayDayUp.ViewModels
             get => settingsManager.GetValue<AppTheme>(settings.Theme.Title);
             set => settingsManager.SetValue(settings.Theme.Title, value);
         }
-        public event EventHandler? ThemeChanged;
-
+        private string exportDescription;
+        internal string ExportDescription { 
+            get => exportDescription;
+            set => SetProperty(ref exportDescription, value);
+        }
+        
         public SettingsPageViewModel(ISettingsManager settingsManager, UserSettings settings)
         {
             this.settingsManager = settingsManager;
@@ -32,9 +43,31 @@ namespace DayDayUp.ViewModels
             settingsManager.SettingChanged += SettingsManager_ThemeChanged;
         }
 
-        internal void ExportToJson(string filePath)
+        [RelayCommand]
+        private async Task ExportAsJson()
         {
-            Ioc.Default.GetRequiredService<IDataAccess>().ExportToJson(filePath);
+            ExportDescription = "";
+            FolderPicker openPicker = new FolderPicker();
+            openPicker.SuggestedStartLocation = PickerLocationId.Desktop;
+            openPicker.FileTypeFilter.Add("*");
+
+            var window = (Application.Current as App)?.CurrentWindow as MainWindow;
+            var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(window);
+            WinRT.Interop.InitializeWithWindow.Initialize(openPicker, hWnd);
+
+            StorageFolder folder = await openPicker.PickSingleFolderAsync();
+            if (folder != null)
+            {
+                StorageApplicationPermissions.FutureAccessList.AddOrReplace("PickedFolderToken", folder);
+                var fileName = "Todo.json";
+                var outputFile = string.Format("{0}/{1}", folder.Path.Replace("\\", "/").Replace("\"", "/"), fileName);
+                Ioc.Default.GetRequiredService<IDataAccess>().ExportToJson(outputFile);
+                ExportDescription = outputFile;
+            }
+            else
+            {
+                ExportDescription = "Canceled";
+            }
         }
 
         private void SettingsManager_ThemeChanged(object sender, SettingChangedEventArgs e)

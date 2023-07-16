@@ -60,10 +60,11 @@
                 </wuc:SettingsCard>
                 <wuc:SettingsCard Name="ExportData"
                                   Header="{x:Bind ViewModel.Strings.Export}"
-                                  HeaderIcon="{wuc:FontIcon FontFamily={StaticResource SymbolThemeFontFamily}, Glyph=&#xEDE2;}">
+                                  HeaderIcon="{wuc:FontIcon FontFamily={StaticResource SymbolThemeFontFamily}, Glyph=&#xEDE2;}"
+                                  Description="{x:Bind ViewModel.ExportDescription, Mode=OneWay}">
                     <Button Name="OpenExportFolder"
                             Content="{x:Bind ViewModel.Strings.PickAFolder}"
-                            Click="OpenExportFolder_Click"/>
+                            Command="{x:Bind ViewModel.ExportAsJsonCommand}"/>
                 </wuc:SettingsCard>
             </wuc:SettingsGroup>
             <wuc:SettingsGroup Header="{x:Bind ViewModel.Strings.About}">
