@@ -26,7 +26,7 @@ public sealed partial class SettingsPage : Page
         openPicker.SuggestedStartLocation = PickerLocationId.Desktop;
         openPicker.FileTypeFilter.Add("*");
 
-        var window = (Application.Current as App)?.MWindow as MainWindow;
+        var window = (Application.Current as App)?.CurrentWindow as MainWindow;
         var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(window);
         WinRT.Interop.InitializeWithWindow.Initialize(openPicker, hWnd);
         
