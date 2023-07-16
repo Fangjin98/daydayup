@@ -27,6 +27,12 @@ namespace DayDayUp.Services
         }
 
         public void Import(StorageFile file) {
+            //TextReader reader = new StreamReader(file.Path);
+            //var list = JsonSerializer.Deserialize(reader);
+            //var importedDb = new LiteDatabase(list.ToString());
+            //foreach ( var item in importedDb.GetCollection<Todo>().FindAll().ToList()) { 
+            //    Debug.WriteLine(item);
+            //}
         }
 
         public async void AddDataAsync(Todo item)
