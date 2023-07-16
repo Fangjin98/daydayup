@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using CommunityToolkit.Mvvm.DependencyInjection;
 using DayDayUp.Models;
-using CommunityToolkit.Mvvm.DependencyInjection;
+using System;
+using System.Collections.Generic;
 
 namespace DayDayUp.Services;
 
