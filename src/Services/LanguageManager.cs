@@ -284,6 +284,11 @@ namespace DayDayUp.Services
         public string Dark => _resources.GetString("Dark");
 
         /// <summary>
+        /// Gets the resource Data.
+        /// </summary>
+        public string Data => _resources.GetString("Data");
+
+        /// <summary>
         /// Gets the resource DefaultLanguage.
         /// </summary>
         public string DefaultLanguage => _resources.GetString("DefaultLanguage");

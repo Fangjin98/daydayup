@@ -135,6 +135,9 @@
   <data name="Dark" xml:space="preserve">
     <value>Dark</value>
   </data>
+  <data name="Data" xml:space="preserve">
+    <value>Data</value>
+  </data>
   <data name="DefaultLanguage" xml:space="preserve">
     <value>Same as Microsoft Windows</value>
   </data>

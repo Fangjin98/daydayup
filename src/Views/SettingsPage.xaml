@@ -47,7 +47,7 @@
                     </wuc:SettingsExpander.Items>
                 </wuc:SettingsExpander>
             </wuc:SettingsGroup>
-            <wuc:SettingsGroup Header="Control">
+            <wuc:SettingsGroup Header="{x:Bind ViewModel.Strings.Data}">
                 <!--<wuc:SettingsCard Header="Sync"
                                   Description="Sync todo data (Last sync date xxx)"
                                   HeaderIcon="{wuc:FontIcon FontFamily={StaticResource SymbolThemeFontFamily}, Glyph=&#xE895;}">

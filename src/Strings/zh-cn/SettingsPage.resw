@@ -135,6 +135,9 @@
   <data name="Dark" xml:space="preserve">
     <value>暗色</value>
   </data>
+  <data name="Data" xml:space="preserve">
+    <value>数据</value>
+  </data>
   <data name="DefaultLanguage" xml:space="preserve">
     <value>与操作系统相同</value>
   </data>
