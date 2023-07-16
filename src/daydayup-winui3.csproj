@@ -20,6 +20,7 @@
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Services\ResourceExtension.cs" />
     <Compile Remove="ShellPage.xaml.cs" />
   </ItemGroup>
   <ItemGroup>
