@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
-using DayDayUp.Core.Settings;
+using DayDayUp.Models;
 using DayDayUp.Services;
 using Microsoft.UI.Xaml;
 using System;
@@ -11,25 +11,25 @@ namespace DayDayUp.ViewModels
 {
     public class SettingsPageViewModel : ObservableObject
     {
-        public SettingsPageViewModel(ISettingsProvider settingsProvider)
-        {
-            _settingsProvider = settingsProvider;
-            _settingsProvider.SettingChanged += SettingsProvider_ThemeChanged;
-        }
-
         internal List<LanguageDefinition> AvailableLanguages => LanguageManager.Instance.AvailableLanguages;
         internal SettingsPageStrings Strings => LanguageManager.Instance.SettingsPage;
-
         internal string Language
         {
-            get => _settingsProvider.GetSetting(PredefinedSettings.Language);
-            set => _settingsProvider.SetSetting(PredefinedSettings.Language, value);
+            get => settingsManager.GetValue<string>(settings.Language.Title);
+            set => settingsManager.SetValue(settings.Language.Title, value);
         }
-
         internal AppTheme Theme
         {
-            get => _settingsProvider.GetSetting(PredefinedSettings.Theme);
-            set => _settingsProvider.SetSetting(PredefinedSettings.Theme, value);
+            get => settingsManager.GetValue<AppTheme>(settings.Theme.Title);
+            set => settingsManager.SetValue(settings.Theme.Title, value);
+        }
+        public event EventHandler? ThemeChanged;
+
+        public SettingsPageViewModel(ISettingsManager settingsManager, UserSettings settings)
+        {
+            this.settingsManager = settingsManager;
+            this.settings = settings;
+            settingsManager.SettingChanged += SettingsManager_ThemeChanged;
         }
 
         internal void ExportToJson(string filePath)
@@ -37,29 +37,31 @@ namespace DayDayUp.ViewModels
             Ioc.Default.GetRequiredService<IDataAccess>().ExportToJson(filePath);
         }
 
-        private void SettingsProvider_ThemeChanged(object sender, SettingChangedEventArgs e)
+        private void SettingsManager_ThemeChanged(object sender, SettingChangedEventArgs e)
         {
-            var CurrentTheme = _settingsProvider.GetSetting(PredefinedSettings.Theme);
+            var CurrentTheme = settingsManager.GetValue<AppTheme>(settings.Theme.Title);
             var CurrentSystemTheme = Application.Current.RequestedTheme == ApplicationTheme.Dark ? AppTheme.Dark : AppTheme.Light;
 
-            if (string.Equals(PredefinedSettings.Theme.Name, e.SettingName, StringComparison.Ordinal))
+            if (string.Equals(settings.Theme.Title, e.key, StringComparison.Ordinal))
             {
                 if (CurrentTheme == AppTheme.Default)
                 {
                     CurrentTheme = CurrentSystemTheme;
                 }
 
-                if (CurrentTheme == AppTheme.Dark)
+                switch (CurrentTheme)
                 {
-                    ThemeManager.Instance.SetCurrentTheme(ElementTheme.Dark);
+                    case AppTheme.Dark:
+                        ThemeManager.Instance.SetCurrentTheme(ElementTheme.Dark); break;
+                    case AppTheme.Light:
+                        ThemeManager.Instance.SetCurrentTheme(ElementTheme.Light); break;
                 }
-                else if (CurrentTheme == AppTheme.Light)
-                {
-                    ThemeManager.Instance.SetCurrentTheme(ElementTheme.Light);
-                }
+
+                ThemeChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 
-        private readonly ISettingsProvider _settingsProvider;
+        private readonly UserSettings settings;
+        private readonly ISettingsManager settingsManager;
     }
 }

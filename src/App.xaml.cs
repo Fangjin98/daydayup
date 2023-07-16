@@ -1,9 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.UI.Xaml;
-using DayDayUp.Core.Settings;
+using DayDayUp.Models;
 using DayDayUp.Services;
 using DayDayUp.ViewModels;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.UI.Xaml;
 using System.Linq;
 using WinUICommunity;
 using WinUIEx;
@@ -38,12 +38,13 @@ public partial class App : Application
         Ioc.Default.ConfigureServices(
             new ServiceCollection()
             .AddSingleton<IDataAccess, LiteDbDataAccess>()
-            .AddSingleton<ISettingsProvider, SettingsProvider>()
+            .AddSingleton<ISettingsManager, ApplicationDataSettingsManager>()
             .AddSingleton<LanguageManager>()
             .AddSingleton<TodoManager>()
+            .AddSingleton<UserSettings>()
+            .AddSingleton<SettingsPageViewModel>()
             .AddTransient<HomePageViewModel>()
             .AddTransient<ArchivePageViewModel>()
-            .AddTransient<SettingsPageViewModel>()
             .BuildServiceProvider());
     }
 
@@ -62,7 +63,7 @@ public partial class App : Application
 
     private void InitApplicationLanguage()
     {
-        string? userdefinedLanguage = Ioc.Default.GetRequiredService<ISettingsProvider>().GetSetting(PredefinedSettings.Language);
+        string? userdefinedLanguage = Ioc.Default.GetRequiredService<ISettingsManager>().GetValue<string>("Language");
         LanguageDefinition languageDefinition
             = LanguageManager.Instance.AvailableLanguages.FirstOrDefault(l => string.Equals(l.InternalName, userdefinedLanguage))
             ?? LanguageManager.Instance.AvailableLanguages[0];
