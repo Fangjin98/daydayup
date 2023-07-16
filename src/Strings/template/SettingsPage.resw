@@ -150,6 +150,9 @@
   <data name="GitHub" xml:space="preserve">
     <value>GitHub</value>
   </data>
+  <data name="Import" xml:space="preserve">
+    <value>Import</value>
+  </data>
   <data name="Language" xml:space="preserve">
     <value>语言</value>
   </data>
@@ -167,6 +170,9 @@
   </data>
   <data name="PickAFolder" xml:space="preserve">
     <value>选择文件夹</value>
+  </data>
+  <data name="PickAJsonFile" xml:space="preserve">
+    <value>Pick a Json file</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>设置</value>

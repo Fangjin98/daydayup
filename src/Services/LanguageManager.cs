@@ -55,16 +55,16 @@ namespace DayDayUp.Services
         /// <summary>
         /// Gets the list of available languages in the app.
         /// </summary>
-        public List<Models.Language> AvailableLanguages { get; }
+        public List<ApplicationLanguage> AvailableLanguages { get; }
 
         public LanguageManager()
         {
-            AvailableLanguages = new List<Models.Language>();
-            AvailableLanguages.Add(new Models.Language()); // default language
+            AvailableLanguages = new List<ApplicationLanguage>();
+            AvailableLanguages.Add(new ApplicationLanguage()); // default language
             IReadOnlyList<string> supportedLanguageIdentifiers = ApplicationLanguages.ManifestLanguages;
             for (int i = 0; i < supportedLanguageIdentifiers.Count; i++)
             {
-                AvailableLanguages.Add(new Models.Language(supportedLanguageIdentifiers[i]));
+                AvailableLanguages.Add(new ApplicationLanguage(supportedLanguageIdentifiers[i]));
             }
         }
 
@@ -79,7 +79,7 @@ namespace DayDayUp.Services
         /// <summary>
         /// Change the current culture of the application
         /// </summary>
-        public void SetCurrentCulture(Models.Language language)
+        public void SetCurrentCulture(ApplicationLanguage language)
         {
             CultureInfo.DefaultThreadCurrentCulture = language.Culture;
             CultureInfo.DefaultThreadCurrentUICulture = language.Culture;
@@ -309,6 +309,11 @@ namespace DayDayUp.Services
         public string GitHub => _resources.GetString("GitHub");
 
         /// <summary>
+        /// Gets the resource Import.
+        /// </summary>
+        public string Import => _resources.GetString("Import");
+
+        /// <summary>
         /// Gets the resource Language.
         /// </summary>
         public string Language => _resources.GetString("Language");
@@ -337,6 +342,11 @@ namespace DayDayUp.Services
         /// Gets the resource PickAFolder.
         /// </summary>
         public string PickAFolder => _resources.GetString("PickAFolder");
+
+        /// <summary>
+        /// Gets the resource PickAJsonFile.
+        /// </summary>
+        public string PickAJsonFile => _resources.GetString("PickAJsonFile");
 
         /// <summary>
         /// Gets the resource Settings.

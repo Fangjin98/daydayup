@@ -3,19 +3,19 @@ using DayDayUp.Services;
 
 namespace DayDayUp.Models;
 
-public class Language
+public class ApplicationLanguage
 {
     public string InternalName { get; }
     public string Identifier { get; }
     public string DisplayName { get; }
     public CultureInfo Culture { get; }
 
-    public Language()
+    public ApplicationLanguage()
         : this(null)
     {
     }
 
-    public Language(string identifier)
+    public ApplicationLanguage(string identifier)
     {
         if (string.IsNullOrEmpty(identifier))
         {
