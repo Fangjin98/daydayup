@@ -1,20 +1,21 @@
 ﻿using System.Globalization;
+using DayDayUp.Services;
 
-namespace DayDayUp.Services;
+namespace DayDayUp.Models;
 
-public class LanguageDefinition
+public class Language
 {
     public string InternalName { get; }
     public string Identifier { get; }
     public string DisplayName { get; }
     public CultureInfo Culture { get; }
 
-    public LanguageDefinition()
+    public Language()
         : this(null)
     {
     }
 
-    public LanguageDefinition(string? identifier)
+    public Language(string identifier)
     {
         if (string.IsNullOrEmpty(identifier))
         {

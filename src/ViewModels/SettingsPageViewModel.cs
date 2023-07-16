@@ -11,7 +11,7 @@ namespace DayDayUp.ViewModels
 {
     public class SettingsPageViewModel : ObservableObject
     {
-        internal List<LanguageDefinition> AvailableLanguages => LanguageManager.Instance.AvailableLanguages;
+        internal List<Language> AvailableLanguages => LanguageManager.Instance.AvailableLanguages;
         internal SettingsPageStrings Strings => LanguageManager.Instance.SettingsPage;
         internal string Language
         {

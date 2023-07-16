@@ -9,7 +9,7 @@ using System.Globalization;
 using Windows.ApplicationModel.Resources;
 using Windows.Globalization;
 using Microsoft.UI.Xaml;
-using DayDayUp.Services;
+using DayDayUp.Models;
 
 namespace DayDayUp.Services
 {
@@ -55,16 +55,16 @@ namespace DayDayUp.Services
         /// <summary>
         /// Gets the list of available languages in the app.
         /// </summary>
-        public List<LanguageDefinition> AvailableLanguages { get; }
+        public List<Models.Language> AvailableLanguages { get; }
 
         public LanguageManager()
         {
-            AvailableLanguages = new List<LanguageDefinition>();
-            AvailableLanguages.Add(new LanguageDefinition()); // default language
+            AvailableLanguages = new List<Models.Language>();
+            AvailableLanguages.Add(new Models.Language()); // default language
             IReadOnlyList<string> supportedLanguageIdentifiers = ApplicationLanguages.ManifestLanguages;
             for (int i = 0; i < supportedLanguageIdentifiers.Count; i++)
             {
-                AvailableLanguages.Add(new LanguageDefinition(supportedLanguageIdentifiers[i]));
+                AvailableLanguages.Add(new Models.Language(supportedLanguageIdentifiers[i]));
             }
         }
 
@@ -79,7 +79,7 @@ namespace DayDayUp.Services
         /// <summary>
         /// Change the current culture of the application
         /// </summary>
-        public void SetCurrentCulture(LanguageDefinition language)
+        public void SetCurrentCulture(Models.Language language)
         {
             CultureInfo.DefaultThreadCurrentCulture = language.Culture;
             CultureInfo.DefaultThreadCurrentUICulture = language.Culture;

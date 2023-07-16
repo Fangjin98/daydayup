@@ -64,7 +64,7 @@ public partial class App : Application
     private void InitApplicationLanguage()
     {
         string? userdefinedLanguage = Ioc.Default.GetRequiredService<ISettingsManager>().GetValue<string>("Language");
-        LanguageDefinition languageDefinition
+        Language languageDefinition
             = LanguageManager.Instance.AvailableLanguages.FirstOrDefault(l => string.Equals(l.InternalName, userdefinedLanguage))
             ?? LanguageManager.Instance.AvailableLanguages[0];
         LanguageManager.Instance.SetCurrentCulture(languageDefinition);
