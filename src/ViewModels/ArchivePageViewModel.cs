@@ -7,6 +7,10 @@ namespace DayDayUp.ViewModels
 {
     public class ArchivePageViewModel : BaseTodoListViewModel
     {
+        public int AverageBias => (int) todoManager.FinishedTodos.Average(x => x.Bias);
+        public int MinBias => todoManager.FinishedTodos.Max(x => x.Bias);
+        public int MaxBias => todoManager.FinishedTodos.Min(x => x.Bias);
+
         public ArchivePageViewModel(TodoManager TodoManager) :
            base(TodoManager)
         {

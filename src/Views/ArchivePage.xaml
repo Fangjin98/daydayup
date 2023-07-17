@@ -6,6 +6,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
       xmlns:converter="using:DayDayUp.UI.Converters"
+      xmlns:wuc="using:WinUICommunity"
       mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <Page.Resources>
@@ -14,42 +15,66 @@
         <converter:ProgressToStringConverter x:Key="ProgressToStringConverter" />
         <converter:DurationToStringConverter x:Key="DurationToStringConverter" />
     </Page.Resources>
-    <Grid Padding="{StaticResource PagePadding}">
-        <controls:DataGrid x:Name="dataGrid"
-                           Loaded="DataGrid_Loaded"
-                           ItemsSource="{x:Bind ViewModel.Todos}"
-                           Margin="12"
-                           VerticalAlignment="Stretch"
-                           HorizontalAlignment="Stretch"
-                           HorizontalScrollBarVisibility="Visible"
-                           VerticalScrollBarVisibility="Visible"
-                           AlternatingRowBackground="Transparent"
-                           AlternatingRowForeground="Gray"
-                           AreRowDetailsFrozen="False"
-                           AreRowGroupHeadersFrozen="False"
-                           AutoGenerateColumns="False"
-                           CanUserSortColumns="False"
-                           CanUserReorderColumns="False"
-                           CanUserResizeColumns="True"
-                           ColumnHeaderHeight="32"
-                           MaxColumnWidth="400"
-                           FrozenColumnCount="0"
-                           GridLinesVisibility="Horizontal"
-                           HeadersVisibility="Column"
-                           IsReadOnly="True"
-                           RowDetailsVisibilityMode="VisibleWhenSelected"
-                           SelectionMode="Extended"
-                           RowGroupHeaderPropertyNameAlternative="Range">
-            <controls:DataGrid.Columns>
-                <controls:DataGridTextColumn Header="Title"
-                                             Binding="{Binding Name}"/>
-                <controls:DataGridTextColumn Header="Bias"
-                                             Binding="{Binding Bias, Converter={StaticResource ProgressToStringConverter}}" />
-                <controls:DataGridTextColumn Header="Estimated Duration"
-                                             Binding="{Binding ExpectedDurationMins, Converter={StaticResource DurationToStringConverter}}" />
-                <controls:DataGridTextColumn Header="Finish Date"
-                                             Binding="{Binding FinishDate, Converter={StaticResource DateToStringConverter}}" />
-            </controls:DataGrid.Columns>
-        </controls:DataGrid>
-    </Grid>
+    <ScrollViewer  VerticalScrollMode="Enabled"
+                   VerticalScrollBarVisibility="Auto">
+        <StackPanel Orientation="Vertical"
+                    ChildrenTransitions="{StaticResource SettingsCardsAnimations}"
+                    Padding="{StaticResource PagePadding}"
+                    Spacing="4">
+            <TextBlock Text="Bias Overview" FontWeight="Bold" FontSize="16"/>
+            <StackPanel Orientation="Horizontal"
+                        Spacing="8">
+                <TextBlock TextWrapping="Wrap">
+                    <Run Text="Average: " />
+                    <Run Text="{x:Bind ViewModel.AverageBias, Mode=OneWay,Converter={StaticResource ProgressToStringConverter}}"
+                            FontWeight="Bold" /></TextBlock>
+                <TextBlock TextWrapping="Wrap">
+                    <Run Text="Max: " />
+                    <Run Text="{x:Bind ViewModel.MaxBias, Mode=OneWay,Converter={StaticResource ProgressToStringConverter}}"
+                         FontWeight="Bold" /></TextBlock>
+                <TextBlock TextWrapping="Wrap">
+                    <Run Text="Min: " />
+                    <Run Text="{x:Bind ViewModel.MinBias, Mode=OneWay,Converter={StaticResource ProgressToStringConverter}}"
+                         FontWeight="Bold" /></TextBlock>
+            </StackPanel>
+            <TextBlock Text="Details"
+                       FontWeight="Bold"
+                       FontSize="16" />
+            <controls:DataGrid x:Name="dataGrid"
+                                   Loaded="DataGrid_Loaded"
+                                   ItemsSource="{x:Bind ViewModel.Todos}"
+                                   VerticalAlignment="Stretch"
+                                   HorizontalAlignment="Stretch"
+                                   HorizontalScrollBarVisibility="Visible"
+                                   VerticalScrollBarVisibility="Visible"
+                                   AlternatingRowBackground="Transparent"
+                                   AlternatingRowForeground="Gray"
+                                   AreRowDetailsFrozen="False"
+                                   AreRowGroupHeadersFrozen="False"
+                                   AutoGenerateColumns="False"
+                                   CanUserSortColumns="False"
+                                   CanUserReorderColumns="False"
+                                   CanUserResizeColumns="True"
+                                   ColumnHeaderHeight="32"
+                                   MaxColumnWidth="400"
+                                   FrozenColumnCount="0"
+                                   GridLinesVisibility="Horizontal"
+                                   HeadersVisibility="Column"
+                                   IsReadOnly="True"
+                                   RowDetailsVisibilityMode="VisibleWhenSelected"
+                                   SelectionMode="Extended"
+                                   RowGroupHeaderPropertyNameAlternative="Range">
+                    <controls:DataGrid.Columns>
+                        <controls:DataGridTextColumn Header="Title"
+                                                     Binding="{Binding Name}" />
+                        <controls:DataGridTextColumn Header="Bias"
+                                                     Binding="{Binding Bias, Converter={StaticResource ProgressToStringConverter}}" />
+                        <controls:DataGridTextColumn Header="Estimated Duration"
+                                                     Binding="{Binding ExpectedDurationMins, Converter={StaticResource DurationToStringConverter}}" />
+                        <controls:DataGridTextColumn Header="Finish Date"
+                                                     Binding="{Binding FinishDate, Converter={StaticResource DateToStringConverter}}" />
+                    </controls:DataGrid.Columns>
+                </controls:DataGrid>
+        </StackPanel>
+    </ScrollViewer>
 </Page>

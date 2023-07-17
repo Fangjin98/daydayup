@@ -28,7 +28,7 @@ public partial class App : Application
         InitApplicationTheme();
         InitApplicationLanguage();
 
-        _window.SetWindowSize(500, 600); // WinUIEx method
+        _window.SetWindowSize(600, 600); // WinUIEx method
         _window.CenterOnScreen();
         _window.Activate();
     }
