@@ -112,25 +112,23 @@ public class Todo : ObservableObject
     {
         get
         {
-            if (IsFinished == true) return 100;
             if (ExpectedDurationMins != 0)
             {
-                return Convert.ToInt32(
-                    Convert.ToDecimal(DurationMins) / Convert.ToDecimal(ExpectedDurationMins) * 100);
+                return Convert.ToInt32(Convert.ToDecimal(DurationMins) / Convert.ToDecimal(ExpectedDurationMins) * 100);
             }
             else return 0;
         }
     }
     
     [BsonIgnore]
-    public double Bias
+    public int Bias
     {
         get
         {
             if (ExpectedDurationMins != 0)
             {
-                return (double)Math.Round(Convert.ToDecimal(DurationMins - ExpectedDurationMins) /
-                    Convert.ToDecimal(ExpectedDurationMins), 2);
+                return Convert.ToInt32(
+                    Convert.ToDecimal(DurationMins - ExpectedDurationMins) / Convert.ToDecimal(ExpectedDurationMins) * 100);
             }
             else return 0;
         }

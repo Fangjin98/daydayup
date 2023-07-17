@@ -12,6 +12,7 @@
         <converter:StatusToStringConverter x:Key="StatusToStringConverter" />
         <converter:DateToStringConverter x:Key="DateToStringConverter" />
         <converter:ProgressToStringConverter x:Key="ProgressToStringConverter" />
+        <converter:DurationToStringConverter x:Key="DurationToStringConverter" />
     </Page.Resources>
     <Grid Padding="{StaticResource PagePadding}">
         <controls:DataGrid x:Name="dataGrid"
@@ -42,12 +43,10 @@
             <controls:DataGrid.Columns>
                 <controls:DataGridTextColumn Header="Title"
                                              Binding="{Binding Name}"/>
-                <controls:DataGridTextColumn Header="Status"
-                                             Binding="{Binding Status, Converter={StaticResource StatusToStringConverter}}" />
-                <controls:DataGridTextColumn Header="Progress"
-                                             Binding="{Binding Progress, Converter={StaticResource ProgressToStringConverter}}" />
                 <controls:DataGridTextColumn Header="Bias"
                                              Binding="{Binding Bias, Converter={StaticResource ProgressToStringConverter}}" />
+                <controls:DataGridTextColumn Header="Estimated Duration"
+                                             Binding="{Binding ExpectedDurationMins, Converter={StaticResource DurationToStringConverter}}" />
                 <controls:DataGridTextColumn Header="Finish Date"
                                              Binding="{Binding FinishDate, Converter={StaticResource DateToStringConverter}}" />
             </controls:DataGrid.Columns>
