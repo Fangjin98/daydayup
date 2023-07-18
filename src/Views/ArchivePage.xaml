@@ -69,9 +69,11 @@
                                                      Binding="{Binding Name}" />
                         <controls:DataGridTextColumn Header="Bias"
                                                      Binding="{Binding Bias, Converter={StaticResource ProgressToStringConverter}}" />
-                        <controls:DataGridTextColumn Header="Estimated Duration"
+                        <controls:DataGridTextColumn Header="Estimated"
                                                      Binding="{Binding ExpectedDurationMins, Converter={StaticResource DurationToStringConverter}}" />
-                        <controls:DataGridTextColumn Header="Finish Date"
+                    <controls:DataGridTextColumn Header="Duration"
+                                                 Binding="{Binding DurationMins, Converter={StaticResource DurationToStringConverter}}" />
+                    <controls:DataGridTextColumn Header="Finish Date"
                                                      Binding="{Binding FinishDate, Converter={StaticResource DateToStringConverter}}" />
                     </controls:DataGrid.Columns>
                 </controls:DataGrid>
